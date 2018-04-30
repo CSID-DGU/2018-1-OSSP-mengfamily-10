@@ -1,0 +1,4 @@
+/home/dek/clion-2017.3.4/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug
