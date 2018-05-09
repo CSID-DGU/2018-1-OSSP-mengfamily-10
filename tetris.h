@@ -40,6 +40,7 @@
 #include <sys/time.h>
 #include <SDL2/SDL.h>
 #include "audio.h"
+#include <pthread.h> /*TODO sj*/
   
 /* Expension factor of shapes */
 #define EXP_FACT 2
@@ -116,6 +117,11 @@ void get_key_event(void);
 void quit(char * name);
 void music(const char * filename, int len);
 void sound(const char * filename, int len);
+
+/*TODO sj
+ * 스레드를 위한 함수들*/
+void *runner(void *param);
+
 /* Variables */
 
 const int shapes[10][4][5][2];
@@ -131,3 +137,8 @@ int lifes;
 
 Bool running;
 
+int speenOnLevel[5] = {500, 500, 500, 500, 1000};
+// 단위가 마이크로세컨드라 *1000해줄거임
+// 500*1000하면 0.5초후에 내려오는거
+/*TODO sj 승민아 이 배열 바꿔서 적용시키면 레벨별로 내려오는 시간 다르게 할 수 있어*/
+int isChanged=0;
