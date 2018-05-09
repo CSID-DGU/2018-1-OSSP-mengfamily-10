@@ -114,7 +114,7 @@ void frame_refresh(void)      //테트리스 테두리
 		}
           }
      }
-     /*
+
      for(i = 0; i < FRAMEH + 1; ++i)
      {
           for(j = 0; j < FRAMEW + 1; ++j)
@@ -128,7 +128,7 @@ void frame_refresh(void)      //테트리스 테두리
 		}
 	  }
      }
-     */
+
      return;
       
 }
