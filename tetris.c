@@ -125,6 +125,8 @@ void init(void)
      return;
 }
 
+/*TODO sj todo
+ * 사용자 입력이 들어오면 isChange를 바꿔줘야함 // flag 역할을 함*/
 void
 get_key_event(void)
 {
@@ -302,6 +304,35 @@ void sound(const char * filename, int len){
   freeAudio(sound);
 }
 
+/*TODO sj
+ * 새롭게 만들어진 스레드를 위한 것*/
+void *runner(void *param){
+    int checkThread = atoi(param);
+    if(checkThread == 0)    // 전달된 param을 써서 구분
+        inputThread();
+    else if(checkThread == 1)
+        tetrominoShiftsThread();
+    else
+        tetrominoGoDownThread();
+}
+
+/*TODO sj todo
+ * 이거 tetris.h에 나중에 추가하기*/
+void inputThread(){  // 사용자의 입력을 받아들일 부분
+    while(running){
+        get_key_event();
+    }
+}
+void tetrominoShiftsThread(){ // 사용자의 입력을 반영해 frame을 그릴 부분
+    while(running){
+        while(!isChanged);  // 사용자의 입력이 들어올때까지 기다림
+    }
+}
+void tetrominoGoDownThread(){ // 일정 시간이 지나면 블럭(테트로미)을 밑으로 내릴 부분
+    while(running){
+
+    }
+}
 
 int
 main(int argc, char **argv)
@@ -313,6 +344,12 @@ main(int argc, char **argv)
      lifes = 2;
      lines = 0;
      char myname[10]; 
+	
+    /*TODO sj
+     * for thread*/
+    pthread_t tid[3];
+    pthread_attr_t attr;
+	
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
@@ -327,8 +364,19 @@ main(int argc, char **argv)
      frame_nextbox_init();;
       //여기까지 게임을 초기화하는 부분
     
+    /*TODO sj
+     * create thread
+     * and call runner*/
+    pthread_attr_init(&attr);
+    pthread_create(&tid[0], &attr, runner, 0);
+    pthread_create(&tid[1], &attr, runner, 1);
+    pthread_create(&tid[2], &attr, runner, 2);
+	
       while(running)
      {
+	      /*TODO sj todo
+      	 * 여기 루프 싹 다 바꿈
+      	 * 이것들을 다 runner로 빼버릴거임*/
       	int ranNum = nrand(1,300);
       	get_key_event();
       	shape_set();
