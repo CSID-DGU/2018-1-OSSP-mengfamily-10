@@ -172,8 +172,7 @@ void frame_preview(void)
 
 }
 
-void
-frame_nextbox_refresh(void)       //다음나올 상자와 모양 
+void frame_nextbox_refresh(void)       //다음나올 상자와 모양
 {
      int i, j;
 

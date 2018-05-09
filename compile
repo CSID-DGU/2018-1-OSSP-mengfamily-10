@@ -1,0 +1,1 @@
+gcc -o hello audio.c config.h shapes.c tetris.h audio.h frame.c util.c tetris.c -lSDL2
