@@ -40,6 +40,7 @@
 #include <sys/time.h>
 #include <SDL2/SDL.h>
 #include "audio.h"
+#include <pthread.h> /*TODO what sj did*/
   
 /* Expension factor of shapes */
 #define EXP_FACT 2
