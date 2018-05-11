@@ -48,7 +48,7 @@ void frame_init(void)        //프레임의 색깔지정과 그리기
      for(i = 0; i < FRAMEW + 1; ++i)
      {
           frame[0][i] = Border;         //윗테두리 색깔지정
-          frame[FRAMEH][i] = Border;    //래테두리 색깔지정
+          frame[FRAMEH][i] = Border;    //아래테두리 색깔지정
      }
      for(i = 0; i < FRAMEH; ++i)
      {
@@ -165,8 +165,6 @@ void frame_preview(void)
 
           }
      }
-
-
 
      return;
 

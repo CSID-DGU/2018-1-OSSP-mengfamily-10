@@ -1,4 +1,24 @@
-/home/dek/clion-2017.3.4/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master
+/home/leeseungmin/clion-2018.1.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/leeseungmin/developLSM
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 -- Configuring done
+CMake Error at CMakeLists.txt:10 (add_executable):
+  Target "2017_2_OSSP_Dongguk_Banjeom_4_master" links to item
+  "-L/usr/lib/x86_64-linux-gnu -lSDL2 " which has leading or trailing
+  whitespace.  This is now an error according to policy CMP0004.
+
+
 -- Generating done
--- Build files have been written to: /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug
+-- Build files have been written to: /home/leeseungmin/developLSM/cmake-build-debug

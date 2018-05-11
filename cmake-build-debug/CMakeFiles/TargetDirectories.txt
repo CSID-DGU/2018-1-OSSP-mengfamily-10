@@ -1,3 +1,3 @@
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir
+/home/leeseungmin/developLSM/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/leeseungmin/developLSM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/leeseungmin/developLSM/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir
