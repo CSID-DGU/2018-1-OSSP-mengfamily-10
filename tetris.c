@@ -126,7 +126,8 @@ void init(void)
 }
 
 /*TODO sj todo
- * 사용자 입력이 들어오면 isChange를 바꿔줘야함 // flag 역할을 함*/
+ * 사용자 입력이 들어오면 isChange를 바꿔줘야함 // flag 역할을 함
+ * CHECK KEY_MOVE_DOWN*/
 void
 get_key_event(void)
 {
@@ -385,7 +386,11 @@ main(int argc, char **argv)
             frame_refresh();
             frame_preview();
           }
-      
+
+          /*TODO sj todo
+           * why
+           * duplicated shape_set()
+           * shape_go_down()->shape_set()*/
      	  shape_go_down();
 
       	if(score> 2000)

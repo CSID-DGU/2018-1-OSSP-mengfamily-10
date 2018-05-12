@@ -182,6 +182,7 @@ shape_unset(void)
           for(j = 0; j < EXP_FACT; ++j)
                frame[current.x + shapes[current.num][current.pos][i][0]]
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
+     // erase it
 
      if(current.x < 1)
           for(i = 0; i < FRAMEW + 1; ++i)
