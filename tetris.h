@@ -128,6 +128,7 @@ int score;
 int lines;
 int level;
 int lifes;
+int eraselines;
 
 Bool running;
 
