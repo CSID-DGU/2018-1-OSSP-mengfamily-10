@@ -31,7 +31,6 @@
  */
 
 #include <SDL2/SDL.h>
-#include <slcurses.h>
 #include "tetris.h"
 #include "config.h"
   

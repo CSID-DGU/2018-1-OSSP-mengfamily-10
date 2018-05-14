@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/audio.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/client.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/client.c.o"
   "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/frame.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/frame.c.o"
   "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/shapes.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/shapes.c.o"
   "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/tetris.c.o"
