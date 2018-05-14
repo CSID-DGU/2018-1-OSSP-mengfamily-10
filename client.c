@@ -46,6 +46,19 @@ int main(int argc, char *argv[])
 
     sendMgsLength = strlen(sendMessage);
 
+    /* send the string to the server */
+    if(send(sock, sendMessage, sendMgsLength, 0) != sendMgsLength)
+        DieWithError("send() sent a different number of bytes than expected\n");
+    else fprintf(stdout, "send message\n");
+
+    /* receive the html from the web server */
+    while(1){
+        bytesRcvd = recv(sock, buffer, RCVBUFSIZE-1,0);
+        if(bytesRcvd <= 0)
+            break;
+        buffer[bytesRcvd] = '\0'; //buffer의 값이 문자열임을 알려주기 위하여...
+        printf("%s", buffer);
+    }
 
     close(sock);
     exit(0);
