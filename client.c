@@ -39,6 +39,14 @@ int main(int argc, char *argv[])
     servAddr.sin_addr.s_addr = inet_addr(servIP); //Server IP address
     servAddr.sin_port = htons(servPort);//Server port
 
+    /* Establish the connection to the web server */
+    if(connect(sock, (struct sockaddr *) &servAddr, sizeof(servAddr)) < 0)
+        DieWithError("connet() failed\n");
+    else fprintf(stdout, "socket connect\n");
+
+    sendMgsLength = strlen(sendMessage);
+
+
     close(sock);
     exit(0);
 }
