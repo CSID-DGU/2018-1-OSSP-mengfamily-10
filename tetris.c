@@ -132,7 +132,8 @@ void init(void)
 void
 get_key_event(int c)
 {
-
+    /*TODO sj
+     * consider this*/
      if(c > 0)
           --current.x;
 	 /*main함수중에 전체 루프중에 필수적으로 거치는 함수이자 입력받은 값에따라 게임 진행이 된다.
@@ -141,8 +142,12 @@ get_key_event(int c)
      {
      case KEY_MOVE_LEFT:            shape_move(-EXP_FACT);              break;
      case KEY_MOVE_RIGHT:           shape_move(EXP_FACT);               break;
+     /*TODO sj
+      * ++scoreeeeeeeeeee?????*/
      case KEY_MOVE_DOWN:            ++current.x; ++score; DRAW_SCORE(); break;
      case KEY_CHANGE_POSITION_NEXT: shape_set_position(N_POS);          break;
+     /*TODO sj
+      * whhhat is the different between KEY_MOVE_DOWN and KEY_DRPO_SHHHAPE*/
      case KEY_DROP_SHAPE:           shape_drop();                       break;
      case KEY_PAUSE:                while(getchar() != KEY_PAUSE);      break;
      case KEY_QUIT:                 running = False;                    break;
@@ -309,12 +314,11 @@ void sound(const char * filename, int len){
  * 새롭게 만들어진 스레드를 위한 것*/
 void *runner(void *param){
     int checkThread = atoi(param);
+    //int checkThread = param;
     if(checkThread == 0)    // 전달된 param을 써서 구분
         inputThread();
     else if(checkThread == 1)
         tetrominoShiftsThread();
-    else
-        tetrominoGoDownThread();
 }
 
 /*TODO sj todo
@@ -353,11 +357,8 @@ void tetrominoShiftsThread(){ // 사용자의 입력을 반영해 frame을 그�
         pthread_mutex_unlock(&mutex);
 
         sem_post(&empty);
-    }
-}
-void tetrominoGoDownThread(){ // 일정 시간이 지나면 블럭(테트로미)을 밑으로 내릴 부분
-    while(running){
 
+        get_key_event(output);
     }
 }
 
@@ -388,6 +389,8 @@ main(int argc, char **argv)
     sem_init(&empty, 0, BUFFER_SIZE);
     sem_init(&full, 0, 0);
     pthread_mutex_init(&mutex, NULL);
+
+    whichLevel =0;  // initial level for speed
 	
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
@@ -408,16 +411,16 @@ main(int argc, char **argv)
      * and call runner*/
     pthread_attr_init(&attr);
     for(int i=0; i<2; i++)
-        pthread_create(&producer[i], &attr, runner, 0);
+        pthread_create(&producer[i], &attr, runner, &whichThread[0]);
     for(int i=0; i<4; i++)
-        pthread_create(&consumer[i], &attr, runner, 1);
+        pthread_create(&consumer[i], &attr, runner, &whichThread[1]);
 	
       while(running)
      {
 	      /*TODO sj todo
       	 * 여기 루프 싹 다 바꿈
       	 * 이것들을 다 runner로 빼버릴거임*/
-      	sleep(0.5);
+      	sleep(speenOnLevel[whichLevel]);
       	/*TODO sj
       	 **/
 

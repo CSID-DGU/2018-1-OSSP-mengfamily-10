@@ -116,7 +116,9 @@ void init(void);
 void arrange_score(int l);
 void check_plain_line(void);
 int check_possible_pos(int, int);
-void get_key_event(void);
+/*TODO sj
+ * changed param*/
+void get_key_event(int c);
 void quit(char * name);
 void music(const char * filename, int len);
 void sound(const char * filename, int len);
@@ -132,6 +134,7 @@ int count, in, out;
 sem_t empty, full;
 pthread_mutex_t mutex;
 
+int whichThread[2] = {0, 1};
 /* Variables */
 
 const int shapes[10][4][5][2];
@@ -147,8 +150,6 @@ int lifes;
 
 Bool running;
 
-int speenOnLevel[5] = {500, 500, 500, 500, 1000};
-// 단위가 마이크로세컨드라 *1000해줄거임
-// 500*1000하면 0.5초후에 내려오는거
+int speenOnLevel[5] = {1, 0.7, 0.5, 0.4, 0.3}; // parameter for sleep()
 /*TODO sj 승민아 이 배열 바꿔서 적용시키면 레벨별로 내려오는 시간 다르게 할 수 있어*/
-int isChanged=0;
+int whichLevel;
