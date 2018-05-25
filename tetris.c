@@ -130,9 +130,8 @@ void init(void)
  * 사용자 입력이 들어오면 isChange를 바꿔줘야함 // flag 역할을 함
  * CHECK KEY_MOVE_DOWN*/
 void
-get_key_event(void)
+get_key_event(int c)
 {
-     int c = getchar();
 
      if(c > 0)
           --current.x;
@@ -322,12 +321,38 @@ void *runner(void *param){
  * 이거 tetris.h에 나중에 추가하기*/
 void inputThread(){  // 사용자의 입력을 받아들일 부분
     while(running){
-        get_key_event();
+        int c = getchar();
+        sem_wait(&empty);
+
+        pthread_mutex_lock(&mutex);
+
+        if(count != BUFFER_SIZE){
+            buffer[in] = c;
+            in = (in+1)%BUFFER_SIZE;
+            count++;
+        }
+
+        pthread_mutex_unlock(&mutex);
+
+        sem_post(&full);
     }
 }
 void tetrominoShiftsThread(){ // 사용자의 입력을 반영해 frame을 그릴 부분
     while(running){
-        while(!isChanged);  // 사용자의 입력이 들어올때까지 기다림
+        int output;
+        sem_wait(&full);
+
+        pthread_mutex_lock(&mutex);
+
+        if(count!=0){
+            output = buffer[out];
+            out = (out+1)%BUFFER_SIZE;
+            count--;
+        }
+
+        pthread_mutex_unlock(&mutex);
+
+        sem_post(&empty);
     }
 }
 void tetrominoGoDownThread(){ // 일정 시간이 지나면 블럭(테트로미)을 밑으로 내릴 부분
@@ -349,8 +374,20 @@ main(int argc, char **argv)
 	
     /*TODO sj
      * for thread*/
-    pthread_t tid[3];
+    //pthread_t tid[3];
+    pthread_t producer[2];
+    pthread_t consumer[4];
     pthread_attr_t attr;
+
+    /*TODO sj
+     * initialize for buffer*/
+    count =0;
+    in =0;
+    out =0;
+
+    sem_init(&empty, 0, BUFFER_SIZE);
+    sem_init(&full, 0, 0);
+    pthread_mutex_init(&mutex, NULL);
 	
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
@@ -370,23 +407,19 @@ main(int argc, char **argv)
      * create thread
      * and call runner*/
     pthread_attr_init(&attr);
-    pthread_create(&tid[0], &attr, runner, 0);
-    pthread_create(&tid[1], &attr, runner, 1);
-    pthread_create(&tid[2], &attr, runner, 2);
+    for(int i=0; i<2; i++)
+        pthread_create(&producer[i], &attr, runner, 0);
+    for(int i=0; i<4; i++)
+        pthread_create(&consumer[i], &attr, runner, 1);
 	
       while(running)
      {
 	      /*TODO sj todo
       	 * 여기 루프 싹 다 바꿈
       	 * 이것들을 다 runner로 빼버릴거임*/
-      	int ranNum = nrand(1,300);
-      	get_key_event();
-      	shape_set();
-      	if(score<2000)       //레벨 5가 되면 블록이 안보임
-	  	    {
-            frame_refresh();
-            frame_preview();
-          }
+      	sleep(0.5);
+      	/*TODO sj
+      	 **/
 
           /*TODO sj todo
            * why
@@ -394,18 +427,6 @@ main(int argc, char **argv)
            * shape_go_down()->shape_set()*/
      	  shape_go_down();
 
-      	if(score> 2000)
-	       printxy(0, FRAMEH_NB + 13, FRAMEW + 3, "***블록이 안보입니다***");
-
-      	if(n >=1 && score >= 100)
-        {
-          	n--;
-             block_down();
-             sound("nope.wav", 400);
-        }
-
-        if(ranNum == 108 )
-          	n++;
      }	//이것이 게임루프의 주축이 되는 부분
      
      sound("violin.wav",9000);
