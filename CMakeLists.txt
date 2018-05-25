@@ -15,6 +15,7 @@ add_executable(2017_2_OSSP_Dongguk_Banjeom_4_master
         shapes.c
         tetris.c
         tetris.h
-        util.c)
+        util.c
+        buffer.h)
 
 target_link_libraries(2017_2_OSSP_Dongguk_Banjeom_4_master ${SDL2_LIBRARIES})

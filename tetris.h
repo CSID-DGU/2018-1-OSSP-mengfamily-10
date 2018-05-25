@@ -40,7 +40,10 @@
 #include <sys/time.h>
 #include <SDL2/SDL.h>
 #include "audio.h"
-#include <pthread.h> /*TODO sj*/
+#include "buffer.h"
+/*TODO sj*/
+#include <pthread.h>
+#include <semaphore.h>
   
 /* Expension factor of shapes */
 #define EXP_FACT 2
@@ -121,6 +124,13 @@ void sound(const char * filename, int len);
 /*TODO sj
  * 스레드를 위한 함수들*/
 void *runner(void *param);
+void inputThread();
+void tetrominoShiftsThread();
+
+buffer_item buffer[BUFFER_SIZE];
+int count, in, out;
+sem_t empty, full;
+pthread_mutex_t mutex;
 
 /* Variables */
 

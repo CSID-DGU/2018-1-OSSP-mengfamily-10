@@ -33,6 +33,7 @@
 #include <SDL2/SDL.h>
 #include "tetris.h"
 #include "config.h"
+#include "buffer.h"
   
 
 /* Functions */
