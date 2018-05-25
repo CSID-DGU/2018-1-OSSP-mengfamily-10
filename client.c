@@ -11,6 +11,7 @@
 #define RCVBUFSIZE 60
 
 void DieWithError(char *errorMessage); //Error handlig
+
 int main(int argc, char *argv[])
 {
     int sock;
@@ -25,8 +26,8 @@ int main(int argc, char *argv[])
     int totalByteRcvd;
 
 
-    servIP = "222.231.20.14";
-    sendMessage = "GET /search.nsp?enc=euc_kr&page=1&q=blog HTTP/1.1\n Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*\nReferer: http://www.1noon.com/\nAccept-Language: ko\nUA-CPU: x86\nAccept-Encoding: gzip, deflate\nUser-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322)\nHost: total.1noon.com\nConnection: Keep-Alive\n\n";
+    servIP = "13.209.29.192";
+    sendMessage = "GET /";
     servPort = 80; // For HTTP
 
     /* Create a reliable, stream socket using TCP */
