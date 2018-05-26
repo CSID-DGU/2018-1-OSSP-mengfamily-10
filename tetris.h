@@ -45,8 +45,8 @@
 #define EXP_FACT 2
 
 /* Frame dimension */
-#define FRAMEW 23   //width
-#define FRAMEH 20   //height
+#define FRAMEW 23
+#define FRAMEH 20
 #define FRAMEW_NB 18
 #define FRAMEH_NB 8
 
@@ -128,7 +128,6 @@ int score;
 int lines;
 int level;
 int lifes;
-int eraselines;
 
 Bool running;
 

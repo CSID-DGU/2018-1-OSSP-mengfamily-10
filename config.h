@@ -2,8 +2,6 @@
  * Need to re-compile to set the change.
  */
 
- //keyboard settings
-
 /* Move the shape */
 #define KEY_MOVE_LEFT  'D'
 #define KEY_MOVE_RIGHT 'C'

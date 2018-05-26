@@ -48,7 +48,7 @@ void frame_init(void)        //프레임의 색깔지정과 그리기
      for(i = 0; i < FRAMEW + 1; ++i)
      {
           frame[0][i] = Border;         //윗테두리 색깔지정
-          frame[FRAMEH][i] = Border;    //아래테두리 색깔지정
+          frame[FRAMEH][i] = Border;    //래테두리 색깔지정
      }
      for(i = 0; i < FRAMEH; ++i)
      {
@@ -90,7 +90,6 @@ void frame_refresh(void)      //테트리스 테두리
 {
      int i, j, k;
 
-
      for(i = 0; i < FRAMEH + 1; ++i)
      {
           for(j = 0; j < FRAMEW + 1; ++j)
@@ -114,7 +113,7 @@ void frame_refresh(void)      //테트리스 테두리
 		}
           }
      }
-
+     /*
      for(i = 0; i < FRAMEH + 1; ++i)
      {
           for(j = 0; j < FRAMEW + 1; ++j)
@@ -128,7 +127,7 @@ void frame_refresh(void)      //테트리스 테두리
 		}
 	  }
      }
-
+     */
      return;
       
 }
@@ -166,6 +165,8 @@ void frame_preview(void)
           }
      }
 
+
+     //frame_refresh();
      return;
 
 }
