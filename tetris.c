@@ -34,8 +34,9 @@
 #include "tetris.h"
 #include "config.h"
 #include "buffer.h"
-  
 
+int whichThread[2] = {0, 1};
+int speenOnLevel[5] = {1, 0.7, 0.5, 0.4, 0.3};
 /* Functions */
 
 char* first(char * name)

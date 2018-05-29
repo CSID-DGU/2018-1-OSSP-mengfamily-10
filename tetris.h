@@ -30,6 +30,8 @@
  *      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef TETRIS_H
+#define TETRIS_H
 /* Libs */
 #include <stdlib.h>
 #include <stdio.h>
@@ -134,8 +136,8 @@ int count, in, out;
 sem_t empty, full;
 pthread_mutex_t mutex;
 
-int whichThread[2] = {0, 1};
-/* Variables */
+//int whichThread[2] = {0, 1};
+///* Variables */
 
 const int shapes[10][4][5][2];
 struct itimerval tv;
@@ -150,6 +152,8 @@ int lifes;
 
 Bool running;
 
-int speenOnLevel[5] = {1, 0.7, 0.5, 0.4, 0.3}; // parameter for sleep()
+//////int speenOnLevel[5] = {1, 0.7, 0.5, 0.4, 0.3}; // parameter for sleep()
 /*TODO sj 승민아 이 배열 바꿔서 적용시키면 레벨별로 내려오는 시간 다르게 할 수 있어*/
 int whichLevel;
+
+#endif

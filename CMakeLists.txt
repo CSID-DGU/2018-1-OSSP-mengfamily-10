@@ -16,6 +16,6 @@ add_executable(2017_2_OSSP_Dongguk_Banjeom_4_master
         tetris.c
         tetris.h
         util.c
-        buffer.h)
+        buffer.h audio.c)
 
 target_link_libraries(2017_2_OSSP_Dongguk_Banjeom_4_master ${SDL2_LIBRARIES})
