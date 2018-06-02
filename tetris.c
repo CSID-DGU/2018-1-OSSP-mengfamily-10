@@ -34,9 +34,10 @@
 #include "tetris.h"
 #include "config.h"
 #include "buffer.h"
+#include <unistd.h>
 
 int whichThread[2] = {0, 1};
-int speenOnLevel[5] = {1, 0.7, 0.5, 0.4, 0.3};
+long speenOnLevel[5] = {1000, 0.7, 0.5, 0.4, 0.3};
 /* Functions */
 
 char* first(char * name)
@@ -420,8 +421,11 @@ main(int argc, char **argv)
      {
 	      /*TODO sj todo
       	 * 여기 루프 싹 다 바꿈
-      	 * 이것들을 다 runner로 빼버릴거임*/
-      	sleep(speenOnLevel[whichLevel]);
+      	 * 이것들을 다 runner로 빼버릴거임
+	       * sleep doesnt work*/
+      	//sleep(speenOnLevel[whichLevel]);
+         sleep(10000);
+      	printf("wake up\n");
       	/*TODO sj
       	 **/
 
