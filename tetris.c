@@ -34,7 +34,7 @@
 #include "tetris.h"
 #include "config.h"
 #include "buffer.h"
-#include <unistd.h>
+//#include <unistd.h>
 
 int whichThread[2] = {0, 1};
 long speenOnLevel[5] = {1000, 0.7, 0.5, 0.4, 0.3};
@@ -326,7 +326,9 @@ void *runner(void *param){
 /*TODO sj todo
  * 이거 tetris.h에 나중에 추가하기*/
 void inputThread(){  // 사용자의 입력을 받아들일 부분
+    printf("producer thread got in\n");
     while(running){
+        printf("in while - inputTttttread\n");
         int c = getchar();
         sem_wait(&empty);
 
@@ -344,7 +346,9 @@ void inputThread(){  // 사용자의 입력을 받아들일 부분
     }
 }
 void tetrominoShiftsThread(){ // 사용자의 입력을 반영해 frame을 그릴 부분
+    printf("consumer thread got in\n");
     while(running){
+        printf("in while - tetrominoShifts\n");
         int output;
         sem_wait(&full);
 
@@ -416,7 +420,9 @@ main(int argc, char **argv)
         pthread_create(&producer[i], &attr, runner, &whichThread[0]);
     for(int i=0; i<4; i++)
         pthread_create(&consumer[i], &attr, runner, &whichThread[1]);
-	
+
+    fflush(stdout);
+
       while(running)
      {
 	      /*TODO sj todo
@@ -424,8 +430,9 @@ main(int argc, char **argv)
       	 * 이것들을 다 runner로 빼버릴거임
 	       * sleep doesnt work*/
       	//sleep(speenOnLevel[whichLevel]);
-         sleep(10000);
+         usleep(1000000);
       	printf("wake up\n");
+         fflush(stdout);
       	/*TODO sj
       	 **/
 
