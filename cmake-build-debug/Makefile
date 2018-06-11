@@ -48,10 +48,10 @@ RM = /home/dek/clion-2017.3.4/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master
+CMAKE_SOURCE_DIR = /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug
+CMAKE_BINARY_DIR = /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,6 +149,33 @@ audio.s: audio.c.s
 audio.c.s:
 	$(MAKE) -f CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/build.make CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/audio.c.s
 .PHONY : audio.c.s
+
+client.o: client.c.o
+
+.PHONY : client.o
+
+# target to build an object file
+client.c.o:
+	$(MAKE) -f CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/build.make CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/client.c.o
+.PHONY : client.c.o
+
+client.i: client.c.i
+
+.PHONY : client.i
+
+# target to preprocess a source file
+client.c.i:
+	$(MAKE) -f CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/build.make CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/client.c.i
+.PHONY : client.c.i
+
+client.s: client.c.s
+
+.PHONY : client.s
+
+# target to generate assembly for a file
+client.c.s:
+	$(MAKE) -f CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/build.make CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/client.c.s
+.PHONY : client.c.s
 
 frame.o: frame.c.o
 
@@ -270,6 +297,9 @@ help:
 	@echo "... audio.o"
 	@echo "... audio.i"
 	@echo "... audio.s"
+	@echo "... client.o"
+	@echo "... client.i"
+	@echo "... client.s"
 	@echo "... frame.o"
 	@echo "... frame.i"
 	@echo "... frame.s"

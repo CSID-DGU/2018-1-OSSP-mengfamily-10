@@ -107,7 +107,7 @@ void block_down(void);
 void revive(void);
 
 /* tetris.c */
-char* first(char * name);
+char* first(char * myId, char * myPwd);
 void init(void);
 void arrange_score(int l);
 void check_plain_line(void);

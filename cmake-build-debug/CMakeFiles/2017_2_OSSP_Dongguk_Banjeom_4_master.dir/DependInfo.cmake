@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/audio.c" "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/audio.c.o"
-  "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/frame.c" "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/frame.c.o"
-  "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/shapes.c" "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/shapes.c.o"
-  "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.c" "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/tetris.c.o"
-  "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/util.c" "/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/util.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/audio.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/client.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/client.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/frame.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/frame.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/shapes.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/shapes.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/tetris.c.o"
+  "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/util.c" "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/util.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

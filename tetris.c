@@ -37,18 +37,25 @@
 
 /* Functions */
 
-char* first(char * name)
+char* first(char * myId, char * myPwd)
 {
-  
-  char start;
-  printf("\n\n\t당신의 이름은? ");
-  scanf("%s",name);
-  printf("\n\n\t\t\tpress enter to enter game!");	 //tab세번이 적절
+  system("clear");
+  char id,pwd;
+  printf("\n\n\t -------LOGIN--------\n\n");
+    printf("\tID : ");
+  scanf("%s",myId);
   while (1) {
-    start = getchar();
-    if (start == '\n')break;
+    id = getchar();
+    if (id == '\n')break;
   }
-  return name;
+    printf("\tPW : ");
+    scanf("%s",myPwd);
+    while(1){
+        pwd = getchar();
+        if(pwd == '\n') break;
+    }
+    printf("\n\n");
+  return myId;
 }
 void init(void)
 {
@@ -312,14 +319,15 @@ main(int argc, char **argv)
      current.last_move = False;
      lifes = 2;
      lines = 0;
-     char myname[10]; 
+     char myId[100];
+    char myPwd[100];
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
        exit;
     }
          
-     first(myname);
+     first(myId, myPwd);
       //초기음악
      sound("test.wav", 2000);
      init(); //게임 진행중에도 게임 사용법 보여
@@ -329,6 +337,8 @@ main(int argc, char **argv)
     
       while(running)
      {
+        // sleep(100000);
+
       	int ranNum = nrand(1,300);
       	get_key_event();
       	shape_set();
@@ -356,6 +366,6 @@ main(int argc, char **argv)
      
      sound("violin.wav",9000);
       SDL_Quit();
-      quit(myname);
+      quit(myId);
      return 0;
 }
