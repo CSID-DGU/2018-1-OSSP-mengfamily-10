@@ -90,7 +90,6 @@ void frame_refresh(void)      //테트리스 테두리
 {
      int i, j, k;
 
-
      for(i = 0; i < FRAMEH + 1; ++i)
      {
           for(j = 0; j < FRAMEW + 1; ++j)
@@ -143,31 +142,31 @@ void frame_preview(void)
           for(j = 0; j < FRAMEW - 1; ++j)
 	  {
 		    if(j%2 == 1)
-		    {	
+		    {
                   	printxy(frame[i][j], i, j, " ");
 		    }
 
-		    else 
+		    else
 		    {
 		    	if(i == 0 || i == FRAMEH || j == 0 || j == FRAMEW - 1)
 		    	{
    		     	   printxy(frame[i][j], i, j, " ");
 		   	    }
-			    else if(frame[i][j] != 0) //위에 블럭이 있을때
+			    else if(frame[i][j] != 0 ) //위에 블럭이 있을때
 			    {
 				    for(int k = i; k < FRAMEH - 1; ++k) 
 			    	{
-                        if(frame[k+1][j] == 0) //블록부분의 영역이 바뀌는걸 막아줌
+                        if((frame[k+1][j] == 0) ) //블록부분의 영역이 바뀌는걸 막아줌
                             printxy(frame[k + 1][j], k + 1, j, "▽");
-				    }	
+				    }
+
 			    }
 	 	    }
 
-          }
+	  }
+
      }
-
-
-
+   // frame_refresh();
      return;
 
 }

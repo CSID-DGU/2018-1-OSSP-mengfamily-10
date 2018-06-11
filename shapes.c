@@ -176,7 +176,8 @@ shape_unset(void)
 	배열 frame의 모든 속성값을 0으로 설정하여준다.
 	마찬가지로 current.x값이 1보다 작으면 프레임 보더로 인식한다.
      */
-     int i, j;
+    int i, j;
+
 
      for(i = 0; i < 5; ++i)
           for(j = 0; j < EXP_FACT; ++j)
@@ -364,7 +365,7 @@ shape_drop(void)
           shape_unset();
           ++current.x;
      }
-     score += (FRAMEH - current.x)*2;
-sound("slip.wav",300);
+  //   score += (FRAMEH - current.x)*2;
+     sound("slip.wav",300);
      return;
 }
