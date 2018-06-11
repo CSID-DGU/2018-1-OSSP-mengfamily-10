@@ -337,6 +337,8 @@ main(int argc, char **argv)
     
       while(running)
      {
+        // sleep(100000);
+
       	int ranNum = nrand(1,300);
       	get_key_event();
       	shape_set();
