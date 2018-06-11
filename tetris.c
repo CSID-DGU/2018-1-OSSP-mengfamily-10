@@ -33,29 +33,85 @@
 #include <SDL2/SDL.h>
 #include "tetris.h"
 #include "config.h"
-  
 
 /* Functions */
 
-char* first(char * myId, char * myPwd)
+int first(char * myId, char * myPwd)
 {
-  system("clear");
-  char id,pwd;
-  printf("\n\n\t -------LOGIN--------\n\n");
+    int sock, sign;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+    sock = socket(PF_INET, SOCK_STREAM,0);
+
+    memset(buff,0x00,sizeof(buff));
+    memset(myId,0x00,sizeof(myId));
+    memset(myPwd,0x00,sizeof(myPwd));
+    memset(&serv_addr,0,sizeof(serv_addr));
+
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+
+    system("clear");
+    printf("\n\n\t -------LOGIN--------\n\n");
     printf("\tID : ");
-  scanf("%s",myId);
-  while (1) {
-    id = getchar();
-    if (id == '\n')break;
-  }
+    scanf("%s",myId);
+
     printf("\tPW : ");
     scanf("%s",myPwd);
-    while(1){
-        pwd = getchar();
-        if(pwd == '\n') break;
-    }
     printf("\n\n");
-  return myId;
+
+    while(1) {
+        printf("\t[1]signup [2]signin : ");
+        scanf("%d", &sign);
+
+        if (sign == 1) {
+            //for signup
+            // serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+
+            if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1) {
+                printf("connect error");
+            }
+
+            sprintf(buff,"%c|%s|%s",'1',myId,myPwd);
+            write(sock,buff,sizeof(buff)); // send socket to server
+            //printf("%s\n",buff);
+            memset(buff,0x00,sizeof(buff)); // empty buffer
+            read(sock,buff,sizeof(buff)); // read socket from server
+            printf("\tuser_idx : ");
+            printf("%s\n",buff);
+            if(buff != NULL){
+                printf("\t succes !");
+            }
+            break;
+
+        } else if (sign == 2) {
+            //for login
+            if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1)
+                printf("connect error");
+
+            sprintf(buff,"%c|%s|%s",'2',myId,myPwd);
+            write(sock,buff,sizeof(buff)); // send socket to server
+            //printf("%s\n",buff);
+            memset(buff,0x00,sizeof(buff)); // empty buffer
+            read(sock,buff,sizeof(buff)); // read socket from server
+
+            printf("\tuser_idx : ");
+            printf("%s\n",buff);
+
+            if(buff != NULL){
+                printf("\t success !");
+            }
+            break;
+
+        } else {
+            printf("It is wrong");
+        }
+    }
+    close(sock);
+    user_idx = (atoi)(buff);
+    return user_idx;
 }
 void init(void)
 {
@@ -127,8 +183,6 @@ void init(void)
      tv.it_value.tv_usec = TIMING;
      sig_handler(SIGALRM);
 
-     
- 
      return;
 }
 
@@ -159,28 +213,35 @@ get_key_event(void)
      return;
 }
 
-void
-arrange_score(int l)
+int prescore = 0;
+int height = 0;
+
+void arrange_score(int l)
 {
+
+    int prelevel = level;
      /* 클리어한 라인에따라 점수부여. 여기서 의문점이 5줄이상일때 에러가 발생하는지
      테트리스는 5줄이상 못깹니다.  */
      switch(l)
      {
-     case 1: score += 40;   break; /* One line */
-     case 2: score += 100;  break; /* Two lines */
-     case 3: score += 300;  break; /* Three lines */
-     case 4: score += 1200; break; /* Four lines */
+     case 1: score += 10;   break; /* One line */
+     case 2: score += 20;  break; /* Two lines */
+     case 3: score += 30;  break; /* Three lines */
+     case 4: score += 40; break; /* Four lines */
      }
 
-     
-     if (score >=100)  //레벨 추가
-      level=2;
-     if (score >=400)
-      level=3;
-     if (score >=700)
-      level=4;
-     if(score >= 1000)
-      level =5;
+   if(score >= prescore + 100 + (level - 1) * 50)
+   {
+       prescore = prescore + 100 + (level - 1) * 50;
+
+       level += 1;
+       if(prelevel < level)
+       {
+           block_down();
+           sound("nope.wav", 400);
+       }
+   }
+
      lines += l;
 
      DRAW_SCORE();
@@ -188,12 +249,25 @@ arrange_score(int l)
      return;
 }
 
+void arrange_score2(int height)
+{
+    score += height * 0.5;
+    DRAW_SCORE();
+    return;
+}
+int check = 0;
+
 void
 check_plain_line(void)
 {
 if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
        exit;
+    }
+
+    if( check != 0)
+    {
+        score += check * 10;
     }
     
      int i, j, k, f, c = 0, nl = 0;
@@ -205,6 +279,7 @@ if(SDL_Init(SDL_INIT_AUDIO) < 0)
                     ++c;
           if(!c)
           {
+              arrange_score2(i + 1);
                ++nl;
                sound("pop.wav",400);
                for(k = i - 1; k > 1; --k)
@@ -213,6 +288,15 @@ if(SDL_Init(SDL_INIT_AUDIO) < 0)
           }
           c = 0;
      }
+
+    if(nl!=0)
+    {
+        check += 1;
+    } else{
+        check = 0;
+    }
+
+
      arrange_score(nl);
      frame_refresh();
 
@@ -235,50 +319,106 @@ check_possible_pos(int x, int y)
 
 void quit(char * name)
 {
-  FILE *rp;
-    rp = fopen ("score.txt","a+");
-    int best_sc;
-    fscanf(rp,"%d",&best_sc);
-  
+    int sock, sign;
+    int rank = 0;
+    int firstScore = 0;
+    char end;
+    struct sockaddr_in serv_addr;
+    char buff[1000];
 
-	 char end;
-     frame_refresh(); /* Redraw a last time the frame */
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    int previous_score = -1;
+
+    frame_refresh(); /* Redraw a last time the frame */
 
      set_cursor(True); //이 함수로인해 터미널창 커서가 숨김에서 풀린다
-     tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미, 
-  
-     if(best_sc<score)
-     {
-        printf("\n\n\n%d ",best_sc);
-      if(best_sc != 0)
-        {
-          FILE *wp;
-          wp = fopen ("score.txt","w");
-          fprintf(wp,"%d %s",score,name);
-          fclose(wp);
+     tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미,
+
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+    //socre get
+    sprintf(buff, "%c|%d", '5', user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    //printf("current score : ");
+    previous_score = (atoi)(buff);
+    close(sock);
+
+    if(score > previous_score){
+        if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+            printf("connect error");
         }
-      else
-          {
-            fprintf(rp,"%d %s",score,name);
-            printf("\n\n\nsad");
-          }
-      printf("\n\n\t축하합니다. %s님이 레벨 %d, 최고점수 %d 점을 달성했습니다.\n\n",name,level,score);
-     }
-    else
-       {
-        printf("\n\n\t수고하셨습니다. %s님의 레벨 %d, 점수는: %d입니다.\n\n",name,level, score);
-       }
-       fclose(rp);
-       
-	 printf("\n\n\t\t\tpress enter to end the game!\n");
-	 while (1) {
+        //score put
+        memset(buff, 0x00, sizeof(buff));
+        sprintf(buff, "%c|%d|%d", '6', score, user_idx);
+        write(sock, buff, sizeof(buff));
+        printf("%s\n", buff);
+        memset(buff, 0x00, sizeof(buff));
+        read(sock, buff, sizeof(buff));
+        close(sock);
+
+        //rank get
+        memset(buff,0x00,sizeof(buff));
+        sprintf(buff, "%c|%d", '7', user_idx);
+        write(sock, buff, sizeof(buff));
+        //printf("%s\n", buff);
+        memset(buff, 0x00, sizeof(buff));
+        read(sock, buff, sizeof(buff));
+        //printf("%s\n", buff);
+        //printf("my Rank : ");
+        rank = (atoi)(buff)+1;
+        //printf("%c\n",buff[9]);
+       // printf("%d\n", myRank);
+        close(sock);
+
+        //1st score get
+        if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+            printf("connect error");
+        }
+        memset(buff,0x00,sizeof(buff));
+        sprintf(buff, "%c|", '8');
+        write(sock, buff, sizeof(buff));
+        //printf("%s\n", buff);
+        memset(buff, 0x00, sizeof(buff));
+        read(sock, buff, sizeof(buff));
+        //printf("%s\n", buff);
+        firstScore = (atoi)(buff);
+        close(sock);
+
+        if(rank != 1) {
+            printf("\n\n\t축하합니다. %s님이 최고점수 %d점을 달성했습니다.\n", name, score);
+            printf("\n\t당신은 현재 %d등 입니다. 1등의 %d점 도전해보세요! \n", rank, firstScore);
+        }else{
+            printf("\n\n\t축하합니다. %s님이 최고점수 %d점을 달성했습니다.\n", name, score);
+            printf("\n\t당신은 현재 1등 입니다. 본인의 최고 점수를 갱신해보세요! \n");
+        }
+    }
+    else {
+        //rank get
+        printf("\n\n\t실력이 많이 녹슬었군요. 과거의 %s님은 점수 %d점을 달성했습니다.\n\n",name,previous_score);
+        printf("\n\t 한번 더 도전해서, 과거의 자신을 뛰어 넘어 보세요!");
+    }
+
+    	 printf("\n\n\t\t\tpress enter to end the game!\n");
+         while (1) {
 		 end = getchar();
 		 if (end == '\n')break;
-   }
-   set_cursor(True); 
-   tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미, 터미널 세팅을 되돌리기
-    system("clear"); //입력창이 다 밑으로 내려가서 이걸로하면 다시위로감
-
+         }
+         set_cursor(True);
+         tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미, 터미널 세팅을 되돌리기
+         system("clear"); //입력창이 다 밑으로 내려가서 이걸로하면 다시위로감
 
      return;
 }
@@ -319,15 +459,19 @@ main(int argc, char **argv)
      current.last_move = False;
      lifes = 2;
      lines = 0;
+
+    //for signup, loging
      char myId[100];
     char myPwd[100];
+    int user_idx = -1;
+
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
        exit;
     }
          
-     first(myId, myPwd);
+     user_idx = first(myId, myPwd);
       //초기음악
      sound("test.wav", 2000);
      init(); //게임 진행중에도 게임 사용법 보여
