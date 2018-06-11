@@ -127,9 +127,9 @@ void sound(const char * filename, int len);
 
 /*TODO sj
  * 스레드를 위한 함수들*/
-void *runner(void *param);
-void inputThread();
-void tetrominoShiftsThread();
+//void *runner(void *param);
+void *inputThread(void *param);
+void *tetrominoShiftsThread(void *param);
 
 buffer_item buffer[BUFFER_SIZE];
 int count, in, out;

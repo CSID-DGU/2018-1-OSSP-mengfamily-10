@@ -124,6 +124,8 @@ const int shapes[10][4][5][2] =
 void
 shape_set(void)
 {
+    printf("shape set\n");
+
      int i, j;
      
      /* frame[FRAMEH+1][FRAMEW+1]
@@ -170,6 +172,7 @@ shape_set(void)
 void
 shape_unset(void)
 {
+    printf("shape unset\n");
      /* 이미 Set되어있는 Shapes를 제거하는 함수
 	(ex) 블록을 모두 채워서 한개의 줄이 사라져야하는 경우
 
@@ -283,7 +286,7 @@ void
 shape_go_down(void)
 {
 
-        shape_unset();
+    shape_unset();
 
      /* Fall the shape else; collision with the ground or another shape
       * then stop it and create another */
@@ -306,6 +309,7 @@ shape_go_down(void)
 	  */
           else
           {
+              printf("shapegodownRUNNING FALSE\n");
                shape_new();
                frame_refresh();
                sleep(2);
@@ -314,7 +318,7 @@ shape_go_down(void)
 
 
 
-
+          shape_set();
      return;
 }
 

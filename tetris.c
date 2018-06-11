@@ -318,38 +318,54 @@ void *runner(void *param){
     int checkThread = atoi(param);
     //int checkThread = param;
     if(checkThread == 0)    // 전달된 param을 써서 구분
-        inputThread();
-    else if(checkThread == 1)
-        tetrominoShiftsThread();
+    {
+        printf("call inputThread\n");
+       // inputThread();
+    }
+    else if(checkThread == 1){
+        printf("call tetrominoTheeaed\n");
+        //tetrominoShiftsThread();
+    }
 }
 
+//
 /*TODO sj todo
  * 이거 tetris.h에 나중에 추가하기*/
-void inputThread(){  // 사용자의 입력을 받아들일 부분
+void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
     printf("producer thread got in\n");
+
+    buffer_item item;
+
     while(running){
         printf("in while - inputTttttread\n");
-        int c = getchar();
+        item = getchar();
         sem_wait(&empty);
 
         pthread_mutex_lock(&mutex);
 
+        //printf("mutextLocked\n");
+
         if(count != BUFFER_SIZE){
-            buffer[in] = c;
+            printf("%d\n", count);
+            buffer[in] = item;
             in = (in+1)%BUFFER_SIZE;
             count++;
         }
 
         pthread_mutex_unlock(&mutex);
 
+       // printf("mutextunLocked\n");
         sem_post(&full);
     }
 }
-void tetrominoShiftsThread(){ // 사용자의 입력을 반영해 frame을 그릴 부분
+void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 frame을 그릴 부분
     printf("consumer thread got in\n");
+
+    buffer_item output;
+
     while(running){
         printf("in while - tetrominoShifts\n");
-        int output;
+
         sem_wait(&full);
 
         pthread_mutex_lock(&mutex);
@@ -364,7 +380,11 @@ void tetrominoShiftsThread(){ // 사용자의 입력을 반영해 frame을 그�
 
         sem_post(&empty);
 
+        printf("got outppppput\n");
+
         get_key_event(output);
+
+        shape_set();
     }
 }
 
@@ -382,8 +402,8 @@ main(int argc, char **argv)
     /*TODO sj
      * for thread*/
     //pthread_t tid[3];
-    pthread_t producer[2];
-    pthread_t consumer[4];
+    pthread_t producer;
+    pthread_t consumer;
     pthread_attr_t attr;
 
     /*TODO sj
@@ -416,23 +436,25 @@ main(int argc, char **argv)
      * create thread
      * and call runner*/
     pthread_attr_init(&attr);
-    for(int i=0; i<2; i++)
-        pthread_create(&producer[i], &attr, runner, &whichThread[0]);
-    for(int i=0; i<4; i++)
-        pthread_create(&consumer[i], &attr, runner, &whichThread[1]);
+    pthread_create(&producer, &attr, inputThread, &whichThread[0]);
+    pthread_create(&consumer, &attr, tetrominoShiftsThread, &whichThread[1]);
 
     fflush(stdout);
 
       while(running)
      {
+
+         //shape_set();
+         printf("mainSHAPPPPPEset\n");
 	      /*TODO sj todo
       	 * 여기 루프 싹 다 바꿈
       	 * 이것들을 다 runner로 빼버릴거임
 	       * sleep doesnt work*/
-      	//sleep(speenOnLevel[whichLevel]);
-         usleep(1000000);
-      	printf("wake up\n");
-         fflush(stdout);
+      	sleep(speenOnLevel[whichLevel]);
+         //usleep(1000000);
+         //nanosleep((const struct timespec[]){{0, 500000000L}}, NULL);
+      	//printf("wake up\n");
+        fflush(stdout);
       	/*TODO sj
       	 **/
 
@@ -441,6 +463,7 @@ main(int argc, char **argv)
            * duplicated shape_set()
            * shape_go_down()->shape_set()*/
      	  shape_go_down();
+
 
      }	//이것이 게임루프의 주축이 되는 부분
      
