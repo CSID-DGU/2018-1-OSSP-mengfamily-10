@@ -317,14 +317,10 @@ check_possible_pos(int x, int y)
      return c;
 }
 
-void quit(char * name)
-{
-    int sock, sign;
-    int rank = 0;
-    int firstScore = 0;
-    char end;
-    struct sockaddr_in serv_addr;
+int previousScore(){
+    int sock,previous_score;
     char buff[1000];
+    struct sockaddr_in serv_addr;
 
     sock = socket(PF_INET,SOCK_STREAM,0);
     memset(buff,0x00,sizeof(buff));
@@ -333,14 +329,6 @@ void quit(char * name)
     serv_addr.sin_family=AF_INET;
     serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
     serv_addr.sin_port=htons(3090);
-
-    int previous_score = -1;
-
-    frame_refresh(); /* Redraw a last time the frame */
-
-     set_cursor(True); //이 함수로인해 터미널창 커서가 숨김에서 풀린다
-     tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미,
-
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
         printf("connect error");
@@ -355,47 +343,117 @@ void quit(char * name)
     //printf("current score : ");
     previous_score = (atoi)(buff);
     close(sock);
+    return previous_score;
+}
+
+void ScoreUpdate()
+{
+    int sock;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+    memset(buff, 0x00, sizeof(buff));
+    sprintf(buff, "%c|%d|%d", '6', score, user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    close(sock);
+}
+
+int rankGet()
+{
+    int sock,rank;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+    //rank get
+    memset(buff,0x00,sizeof(buff));
+    sprintf(buff, "%c|%d", '7', user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    //printf("my Rank : ");
+    rank = (atoi)(buff)+1;
+    //printf("%c\n",buff[9]);
+    // printf("%d\n", myRank);
+    close(sock);
+    return rank;
+}
+
+int firstScoreGet()
+{
+    int sock,first=0;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+
+    memset(buff,0x00,sizeof(buff));
+    sprintf(buff, "%c|", '8');
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    first = (atoi)(buff);
+    return first;
+}
+
+void quit(char * name)
+{
+    int sock, sign;
+    int rank = 0;
+    int firstScore = 0;
+    char end;
+    int previous_score = -1;
+
+    frame_refresh(); /* Redraw a last time the frame */
+
+     set_cursor(True); //이 함수로인해 터미널창 커서가 숨김에서 풀린다
+     tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미,
+
+    previous_score = previousScore();
 
     if(score > previous_score){
-        if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-            printf("connect error");
-        }
-        //score put
-        memset(buff, 0x00, sizeof(buff));
-        sprintf(buff, "%c|%d|%d", '6', score, user_idx);
-        write(sock, buff, sizeof(buff));
-        printf("%s\n", buff);
-        memset(buff, 0x00, sizeof(buff));
-        read(sock, buff, sizeof(buff));
-        close(sock);
 
-        //rank get
-        memset(buff,0x00,sizeof(buff));
-        sprintf(buff, "%c|%d", '7', user_idx);
-        write(sock, buff, sizeof(buff));
-        //printf("%s\n", buff);
-        memset(buff, 0x00, sizeof(buff));
-        read(sock, buff, sizeof(buff));
-        //printf("%s\n", buff);
-        //printf("my Rank : ");
-        rank = (atoi)(buff)+1;
-        //printf("%c\n",buff[9]);
-       // printf("%d\n", myRank);
-        close(sock);
-
-        //1st score get
-        if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-            printf("connect error");
-        }
-        memset(buff,0x00,sizeof(buff));
-        sprintf(buff, "%c|", '8');
-        write(sock, buff, sizeof(buff));
-        //printf("%s\n", buff);
-        memset(buff, 0x00, sizeof(buff));
-        read(sock, buff, sizeof(buff));
-        //printf("%s\n", buff);
-        firstScore = (atoi)(buff);
-        close(sock);
+        ScoreUpdate();
+        rank = rankGet();
+        firstScore = firstScoreGet();
 
         if(rank != 1) {
             printf("\n\n\t축하합니다. %s님이 최고점수 %d점을 달성했습니다.\n", name, score);
@@ -450,8 +508,7 @@ void sound(const char * filename, int len){
 }
 
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     /*변수들*/
     level = 1;
