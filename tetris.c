@@ -152,6 +152,7 @@ get_key_event(void)
     return;
 }
 int prescore = 0;
+int height = 0;
 
 void
 arrange_score(int l)
@@ -178,13 +179,20 @@ arrange_score(int l)
             sound("nope.wav", 400);
         }
     }
-
     lines += l;
 
     DRAW_SCORE();
 
     return;
 }
+
+void arrange_score2(int height)
+{
+    score+= height * 0.5;
+    DRAW_SCORE();
+    return;
+}
+
 
 void
 check_plain_line(void)
@@ -194,23 +202,47 @@ check_plain_line(void)
         exit;
     }
 
+    if(check != 0)
+    {
+        score+= check * 10;
+    }
+
     int i, j, k, f, c = 0, nl = 0;
 
     for(i = 1; i < FRAMEH; ++i)
     {
+
         for(j = 1; j < FRAMEW; ++j)
             if(frame[i][j] == 0)
-                ++c;
+            {    ++c;
+            }
+
         if(!c)
         {
+      //      arrange_score2(i + 1);
             ++nl;
+
             sound("pop.wav",400);
+
+
             for(k = i - 1; k > 1; --k)
-                for(f = 1; f < FRAMEW; ++f)
-                    frame[k + 1][f] = frame[k][f];
+              for(f = 1; f < FRAMEW; ++f)
+              {
+                   frame[k + 1][f] = frame[k][f];
+              }
         }
         c = 0;
     }
+
+  if(nl != 0)
+  {
+   check +=1;
+  } else{
+        check = 0;
+    }
+
+     nl = 0;
+
     arrange_score(nl);
     frame_refresh();
 
@@ -342,7 +374,7 @@ main(int argc, char **argv)
             frame_refresh();
             frame_preview();
         }
-
+       // view();
         shape_go_down();
 
         if(score> 2000)

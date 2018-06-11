@@ -94,6 +94,7 @@ void frame_nextbox_init(void);
 void frame_refresh(void);
 void frame_preview(void);
 void frame_nextbox_refresh(void);
+void view(void);
 
 /* shapes.c */
 void shape_set(void);
@@ -105,11 +106,15 @@ void shape_move(int);
 void shape_drop(void);
 void block_down(void);
 void revive(void);
+int height;
 
 /* tetris.c */
+int height;
+int check;
 char* first(char * name);
 void init(void);
 void arrange_score(int l);
+void arrange_score2(int h);
 void check_plain_line(void);
 int check_possible_pos(int, int);
 void get_key_event(void);
