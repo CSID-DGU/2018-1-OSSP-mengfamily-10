@@ -39,6 +39,11 @@
 #include <string.h>
 #include <sys/time.h>
 #include <SDL2/SDL.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include "audio.h"
   
 /* Expension factor of shapes */
@@ -107,9 +112,11 @@ void block_down(void);
 void revive(void);
 
 /* tetris.c */
-char* first(char * myId, char * myPwd);
+
+int first(char * myId, char * myPwd);
 void init(void);
 void arrange_score(int l);
+void arrange_score2(int h);
 void check_plain_line(void);
 int check_possible_pos(int, int);
 void get_key_event(void);
@@ -124,6 +131,7 @@ struct termios back_attr;
 shape_t current;
 int frame[FRAMEH + 1][FRAMEW + 1];
 int frame_nextbox[FRAMEH_NB][FRAMEW_NB];
+int user_idx;
 int score;
 int lines;
 int level;
