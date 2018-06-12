@@ -37,7 +37,7 @@
 //#include <unistd.h>
 
 int whichThread[2] = {0, 1};
-long speenOnLevel[5] = {1000, 0.7, 0.5, 0.4, 0.3};
+long speenOnLevel[5] = {100000, 0.7, 0.5, 0.4, 0.3};
 /* Functions */
 
 char* first(char * name)
@@ -136,6 +136,7 @@ get_key_event(int c)
 {
     /*TODO sj
      * consider this*/
+    pthread_mutex_lock(&locInfo);
      if(c > 0)
           --current.x;
 	 /*main함수중에 전체 루프중에 필수적으로 거치는 함수이자 입력받은 값에따라 게임 진행이 된다.
@@ -157,8 +158,8 @@ get_key_event(int c)
      case 'r':                      if(lifes != 0) revive();             break;
      //case 't':                      sleep(5);                         break; //5초 정지 
      //시간 멈추는 능력 
-     }  
-
+     }
+    pthread_mutex_unlock(&locInfo);
      return;
 }
 
@@ -328,7 +329,13 @@ void *runner(void *param){
     }
 }
 
-//
+//void callShapeUnset(){
+//    pthread_mutex_lock(&callFunc);
+//    shape_unset();
+//    pthread_mutex_unlock(&callFunc);
+//}
+
+
 /*TODO sj todo
  * 이거 tetris.h에 나중에 추가하기*/
 void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
@@ -339,6 +346,8 @@ void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
     while(running){
         printf("in while - inputTttttread\n");
         item = getchar();
+        item = getchar();
+        item = getchar();
         sem_wait(&empty);
 
         pthread_mutex_lock(&mutex);
@@ -348,6 +357,8 @@ void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
         if(count != BUFFER_SIZE){
             printf("%d\n", count);
             buffer[in] = item;
+            //clearBuffer();
+            printf("gotoutof CB\n");
             in = (in+1)%BUFFER_SIZE;
             count++;
         }
@@ -374,6 +385,12 @@ void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 fr
             output = buffer[out];
             out = (out+1)%BUFFER_SIZE;
             count--;
+
+            get_key_event(output);
+            //shape_unset();
+            //shape_set();
+            //shape_unset();
+            shape_set_unset(2);
         }
 
         pthread_mutex_unlock(&mutex);
@@ -382,11 +399,17 @@ void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 fr
 
         printf("got outppppput\n");
 
-        get_key_event(output);
-
-        shape_set();
     }
 }
+
+void delay(unsigned int sec){
+    clock_t ticks1 = clock();
+    clock_t ticks2 = ticks1;
+    while((ticks2/CLOCKS_PER_SEC-ticks1/CLOCKS_PER_SEC)<(clock_t)sec)
+        ticks2 = clock();
+}
+
+// shape set, unset FYCTION
 
 int
 main(int argc, char **argv)
@@ -415,6 +438,8 @@ main(int argc, char **argv)
     sem_init(&empty, 0, BUFFER_SIZE);
     sem_init(&full, 0, 0);
     pthread_mutex_init(&mutex, NULL);
+    pthread_mutex_init(&callFunc, NULL);
+    pthread_mutex_init(&locInfo, NULL);
 
     whichLevel =0;  // initial level for speed
 	
@@ -439,29 +464,15 @@ main(int argc, char **argv)
     pthread_create(&producer, &attr, inputThread, &whichThread[0]);
     pthread_create(&consumer, &attr, tetrominoShiftsThread, &whichThread[1]);
 
-    fflush(stdout);
+    //ssssssfflush(stdout);
 
       while(running)
      {
 
-         //shape_set();
-         printf("mainSHAPPPPPEset\n");
-	      /*TODO sj todo
-      	 * 여기 루프 싹 다 바꿈
-      	 * 이것들을 다 runner로 빼버릴거임
-	       * sleep doesnt work*/
-      	sleep(speenOnLevel[whichLevel]);
-         //usleep(1000000);
-         //nanosleep((const struct timespec[]){{0, 500000000L}}, NULL);
-      	//printf("wake up\n");
-        fflush(stdout);
-      	/*TODO sj
-      	 **/
-
-          /*TODO sj todo
-           * why
-           * duplicated shape_set()
-           * shape_go_down()->shape_set()*/
+         shape_set_unset(1);
+         //printf("mainSHAPPPPPEset\n");
+	      /*TODO sj todo*/
+         delay(1);
      	  shape_go_down();
 
 

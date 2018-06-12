@@ -32,8 +32,8 @@
       <file leaf-file-name="tetris.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tetris.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="140" column="25" selection-start-line="140" selection-start-column="25" selection-end-line="140" selection-end-column="25" />
+            <state relative-caret-position="205">
+              <caret line="440" column="40" lean-forward="true" selection-start-line="440" selection-start-column="40" selection-end-line="440" selection-end-column="40" />
               <folding>
                 <element signature="e#1746#1767#0" expanded="true" />
               </folding>
@@ -44,7 +44,7 @@
       <file leaf-file-name="util.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="1605">
               <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
             </state>
           </provider>
@@ -55,18 +55,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1635">
               <caret line="109" column="2" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="audio.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/audio.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="455" column="5" lean-forward="true" selection-start-line="455" selection-start-column="5" selection-end-line="455" selection-end-column="5" />
-              <folding>
-                <element signature="e#624#643#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -92,8 +80,8 @@
       <file leaf-file-name="shapes.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shapes.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="320" column="22" selection-start-line="320" selection-start-column="22" selection-end-line="320" selection-end-column="22" />
+            <state relative-caret-position="307">
+              <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -101,8 +89,8 @@
       <file leaf-file-name="tetris.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tetris.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="129" column="2" selection-start-line="129" selection-start-column="2" selection-end-line="129" selection-end-column="2" />
+            <state relative-caret-position="137">
+              <caret line="104" column="26" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
               <folding>
                 <element signature="e#1769#1788#0" expanded="true" />
                 <element signature="e#1984#2004#0" expanded="true" />
@@ -126,7 +114,6 @@
     <findStrings>
       <find>SHAPE_SET_</find>
       <find>SHAPE_un</find>
-      <find>input</find>
       <find>in</find>
       <find>shape_</find>
       <find>shape_move</find>
@@ -137,9 +124,18 @@
       <find>whichThread</find>
       <find>whichLe</find>
       <find>which</find>
-      <find>shape_go_down</find>
       <find>shape_unset</find>
       <find>shape_set</find>
+      <find>shape_go_down</find>
+      <find>new</find>
+      <find>set</find>
+      <find>shape_se</find>
+      <find>unset</find>
+      <find>input</find>
+      <find>call</find>
+      <find>un</find>
+      <find>check</find>
+      <find>pri</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -151,8 +147,8 @@
         <option value="$PROJECT_DIR$/buffer.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/audio.c" />
-        <option value="$PROJECT_DIR$/tetris.h" />
         <option value="$PROJECT_DIR$/util.c" />
+        <option value="$PROJECT_DIR$/tetris.h" />
         <option value="$PROJECT_DIR$/shapes.c" />
         <option value="$PROJECT_DIR$/tetris.c" />
       </list>
@@ -194,7 +190,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="pro&#9;ACTION&#9;ActivateProjectToolWindow&#10;import&#9;ACTION&#9;CPP.ImportCMakeProject" />
+    <property name="SearchEverywhereHistoryKey" value="pro&#9;ACTION&#9;ActivateProjectToolWindow&#10;open recent&#9;ACTION&#9;$LRU&#10;import&#9;ACTION&#9;CPP.ImportCMakeProject" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -241,22 +237,24 @@
       <workItem from="1527950833806" duration="351000" />
       <workItem from="1528289083733" duration="1666000" />
       <workItem from="1528345640981" duration="374000" />
-      <workItem from="1528690955452" duration="7582000" />
+      <workItem from="1528690955452" duration="7711000" />
+      <workItem from="1528779901121" duration="2692000" />
+      <workItem from="1528798373057" duration="5217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28935000" />
+    <option name="totallyTimeSpent" value="36973000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1615" height="904" extended-state="6" />
+    <frame x="64" y="-11" width="1617" height="912" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15541796" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.15541796" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.31539425" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.31559855" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="2" visible="true" weight="0.4401451" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.4401451" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -271,6 +269,26 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15541796" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info active="true" anchor="bottom" id="Find" order="2" visible="true" weight="0.4401451" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Messages" order="0" visible="true" weight="0.32914573" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.31559855" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -280,7 +298,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -661,18 +679,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/audio.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="455" column="5" lean-forward="true" selection-start-line="455" selection-start-column="5" selection-end-line="455" selection-end-column="5" />
+        <state relative-caret-position="6825">
+          <caret line="455" column="5" selection-start-line="455" selection-start-column="5" selection-end-line="455" selection-end-column="5" />
           <folding>
             <element signature="e#624#643#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/util.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1605">
+          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tetris.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="129" column="2" selection-start-line="129" selection-start-column="2" selection-end-line="129" selection-end-column="2" />
+        <state relative-caret-position="137">
+          <caret line="104" column="26" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
           <folding>
             <element signature="e#1769#1788#0" expanded="true" />
             <element signature="e#1984#2004#0" expanded="true" />
@@ -680,24 +705,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shapes.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="320" column="22" selection-start-line="320" selection-start-column="22" selection-end-line="320" selection-end-column="22" />
+        <state relative-caret-position="307">
+          <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tetris.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="140" column="25" selection-start-line="140" selection-start-column="25" selection-end-line="140" selection-end-column="25" />
+        <state relative-caret-position="205">
+          <caret line="440" column="40" lean-forward="true" selection-start-line="440" selection-start-column="40" selection-end-line="440" selection-end-column="40" />
           <folding>
             <element signature="e#1746#1767#0" expanded="true" />
           </folding>

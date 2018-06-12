@@ -102,7 +102,7 @@ void frame_preview(void);
 void frame_nextbox_refresh(void);
 
 /* shapes.c */
-void shape_set(void);
+void shape_set_unset(int n);
 void shape_unset(void);
 void shape_new(void);
 void shape_go_down(void);
@@ -135,6 +135,8 @@ buffer_item buffer[BUFFER_SIZE];
 int count, in, out;
 sem_t empty, full;
 pthread_mutex_t mutex;
+pthread_mutex_t callFunc;
+pthread_mutex_t locInfo;
 
 //int whichThread[2] = {0, 1};
 ///* Variables */
