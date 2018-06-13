@@ -120,7 +120,7 @@ void arrange_score2(int h);
 void check_plain_line(void);
 int check_possible_pos(int, int);
 void get_key_event(void);
-void quit(char * name);
+void quit(char * name,int user_idx);
 void music(const char * filename, int len);
 void sound(const char * filename, int len);
 /* Variables */

@@ -434,9 +434,35 @@ int firstScoreGet()
     return first;
 }
 
-void quit(char * name)
+void saveLifes(int user_idx)
 {
-    int sock, sign;
+    int sock, item;
+    struct sockaddr_in serv_addr;
+    char buff[1000];
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    memset(buff, 0x00, sizeof(buff));
+    sprintf(buff, "%c|%d|%d", '4', lifes, user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n",buff);
+    item = (atoi)(buff);
+   // printf("%d\n",myItem);
+    close(sock);
+
+}
+
+void quit(char * name, int user_idx)
+{
     int rank = 0;
     int firstScore = 0;
     char end;
@@ -448,7 +474,6 @@ void quit(char * name)
      tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미,
 
     previous_score = previousScore();
-
     if(score > previous_score){
 
         ScoreUpdate();
@@ -468,7 +493,8 @@ void quit(char * name)
         printf("\n\n\t실력이 많이 녹슬었군요. 과거의 %s님은 점수 %d점을 달성했습니다.\n\n",name,previous_score);
         printf("\n\t 한번 더 도전해서, 과거의 자신을 뛰어 넘어 보세요!");
     }
-
+        //save the lifes (rare items)
+        saveLifes(user_idx);
     	 printf("\n\n\t\t\tpress enter to end the game!\n");
          while (1) {
 		 end = getchar();
@@ -507,6 +533,37 @@ void sound(const char * filename, int len){
   freeAudio(sound);
 }
 
+int getLifes(int user_idx)
+{
+    int sock, item;
+    struct sockaddr_in serv_addr;
+    char buff[1000];
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+
+    sprintf(buff, "%c|%d", '3', user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    //printf("item number : ");
+    item = (atoi)(buff);
+    //printf("%c\n",buff[9]);
+    //printf("%d\n", myItem);
+    close(sock);
+    return item;
+}
 
 int main(int argc, char **argv)
 {
@@ -514,7 +571,7 @@ int main(int argc, char **argv)
     level = 1;
     int n =1;
      current.last_move = False;
-     lifes = 2;
+     //lifes = 2;
      lines = 0;
 
     //for signup, loging
@@ -529,6 +586,7 @@ int main(int argc, char **argv)
     }
          
      user_idx = first(myId, myPwd);
+     lifes = getLifes(user_idx);
       //초기음악
      sound("test.wav", 2000);
      init(); //게임 진행중에도 게임 사용법 보여
@@ -567,6 +625,6 @@ int main(int argc, char **argv)
      
      sound("violin.wav",9000);
       SDL_Quit();
-      quit(myId);
+      quit(myId,user_idx);
      return 0;
 }
