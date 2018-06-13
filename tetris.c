@@ -472,7 +472,8 @@ main(int argc, char **argv)
          shape_set_unset(1);
          //printf("mainSHAPPPPPEset\n");
 	      /*TODO sj todo*/
-         delay(1);
+         //delay(1);
+         sleep(1000);
      	  shape_go_down();
 
 

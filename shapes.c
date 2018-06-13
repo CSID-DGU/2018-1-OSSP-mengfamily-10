@@ -121,7 +121,7 @@ const int shapes[10][4][5][2] =
 };
 
 
-void shape_set_unset(int n){
+void shape_set_unset(int n){ //chhhhanged
     pthread_mutex_lock(&callFunc);
     int i,j;
 
