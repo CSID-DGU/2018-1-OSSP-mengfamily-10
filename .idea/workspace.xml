@@ -12,7 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8da09116-1305-4598-8db4-4b8882116d07" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shapes.c" beforeDir="false" afterPath="$PROJECT_DIR$/shapes.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test" beforeDir="false" afterPath="$PROJECT_DIR$/test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tetris.c" beforeDir="false" afterPath="$PROJECT_DIR$/tetris.c" afterDir="false" />
@@ -28,11 +27,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tetris.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tetris.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tetris.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="194" column="4" lean-forward="true" selection-start-line="194" selection-start-column="4" selection-end-line="194" selection-end-column="4" />
+            <state relative-caret-position="202">
+              <caret line="392" column="28" lean-forward="true" selection-start-line="392" selection-start-column="28" selection-end-line="392" selection-end-column="28" />
               <folding>
                 <element signature="e#1746#1767#0" expanded="true" />
               </folding>
@@ -76,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shapes.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shapes.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shapes.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="123" column="41" selection-start-line="123" selection-start-column="41" selection-end-line="123" selection-end-column="41" />
+            <state relative-caret-position="997">
+              <caret line="160" column="23" lean-forward="true" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -136,7 +135,9 @@
       <find>pri</find>
       <find>check</find>
       <find>key</find>
+      <find>get</find>
       <find>set_un</find>
+      <find>set_unse</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,8 +151,8 @@
         <option value="$PROJECT_DIR$/audio.c" />
         <option value="$PROJECT_DIR$/util.c" />
         <option value="$PROJECT_DIR$/tetris.h" />
-        <option value="$PROJECT_DIR$/tetris.c" />
         <option value="$PROJECT_DIR$/shapes.c" />
+        <option value="$PROJECT_DIR$/tetris.c" />
       </list>
     </option>
   </component>
@@ -175,10 +176,23 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="2017_2_OSSP_Dongguk_Banjeom_4_master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2018-1-OSSP-mengfamily-10" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="pro&#9;ACTION&#9;ActivateProjectToolWindow&#10;open recent&#9;ACTION&#9;$LRU&#10;import&#9;ACTION&#9;CPP.ImportCMakeProject" />
+    <property name="SearchEverywhereHistoryKey" value="project&#9;ACTION&#9;ActivateProjectToolWindow&#10;pro&#9;ACTION&#9;ActivateProjectToolWindow&#10;open recent&#9;ACTION&#9;$LRU&#10;import&#9;ACTION&#9;CPP.ImportCMakeProject" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -228,35 +242,35 @@
       <workItem from="1528690955452" duration="7711000" />
       <workItem from="1528779901121" duration="2692000" />
       <workItem from="1528798373057" duration="5535000" />
-      <workItem from="1528863140550" duration="880000" />
+      <workItem from="1528863140550" duration="5456000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38171000" />
+    <option name="totallyTimeSpent" value="42747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1617" height="912" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15541796" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15541796" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info active="true" anchor="bottom" id="CMake" order="11" visible="true" weight="0.31559855" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.31559855" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="2" visible="true" weight="0.4401451" />
       <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Run" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info active="true" anchor="bottom" id="Messages" order="0" visible="true" weight="0.32914573" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.4401451" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="CMake" order="11" weight="0.31559855" />
@@ -694,20 +708,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tetris.c">
+    <entry file="file://$PROJECT_DIR$/shapes.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="194" column="4" lean-forward="true" selection-start-line="194" selection-start-column="4" selection-end-line="194" selection-end-column="4" />
-          <folding>
-            <element signature="e#1746#1767#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="997">
+          <caret line="160" column="23" lean-forward="true" selection-start-line="160" selection-start-column="23" selection-end-line="160" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shapes.c">
+    <entry file="file://$PROJECT_DIR$/tetris.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="123" column="41" selection-start-line="123" selection-start-column="41" selection-end-line="123" selection-end-column="41" />
+        <state relative-caret-position="202">
+          <caret line="392" column="28" lean-forward="true" selection-start-line="392" selection-start-column="28" selection-end-line="392" selection-end-column="28" />
+          <folding>
+            <element signature="e#1746#1767#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

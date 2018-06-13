@@ -320,11 +320,11 @@ void *runner(void *param){
     //int checkThread = param;
     if(checkThread == 0)    // 전달된 param을 써서 구분
     {
-        printf("call inputThread\n");
+        //printf("call inputThread\n");
        // inputThread();
     }
     else if(checkThread == 1){
-        printf("call tetrominoTheeaed\n");
+        //printf("call tetrominoTheeaed\n");
         //tetrominoShiftsThread();
     }
 }
@@ -339,12 +339,12 @@ void *runner(void *param){
 /*TODO sj todo
  * 이거 tetris.h에 나중에 추가하기*/
 void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
-    printf("producer thread got in\n");
+    //printf("producer thread got in\n");
 
     buffer_item item;
 
     while(running){
-        printf("in while - inputTttttread\n");
+        //printf("in while - inputTttttread\n");
         item = getchar();
         item = getchar();
         item = getchar();
@@ -358,7 +358,7 @@ void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
             printf("%d\n", count);
             buffer[in] = item;
             //clearBuffer();
-            printf("gotoutof CB\n");
+            //printf("gotoutof CB\n");
             in = (in+1)%BUFFER_SIZE;
             count++;
         }
@@ -370,12 +370,12 @@ void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
     }
 }
 void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 frame을 그릴 부분
-    printf("consumer thread got in\n");
+    //printf("consumer thread got in\n");
 
     buffer_item output;
 
     while(running){
-        printf("in while - tetrominoShifts\n");
+        //printf("in while - tetrominoShifts\n");
 
         sem_wait(&full);
 
@@ -385,19 +385,20 @@ void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 fr
             output = buffer[out];
             out = (out+1)%BUFFER_SIZE;
             count--;
-
+            //lock
+            shape_set_unset(0);
             get_key_event(output);
             //shape_unset();
             //shape_set();
             //shape_unset();
-            shape_set_unset(2);
+            shape_set_unset(1);
         }
 
         pthread_mutex_unlock(&mutex);
 
         sem_post(&empty);
 
-        printf("got outppppput\n");
+        //printf("got outppppput\n");
 
     }
 }
@@ -468,8 +469,9 @@ main(int argc, char **argv)
 
       while(running)
      {
-
+         pthread_mutex_lock(&locInfo);
          shape_set_unset(1);
+         pthread_mutex_unlock(&locInfo);
          //printf("mainSHAPPPPPEset\n");
 	      /*TODO sj todo*/
          //delay(1);
