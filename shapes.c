@@ -128,13 +128,13 @@ void shape_set_unset(int n){ //chhhhanged
 
     if(n != 1){
         //printf("\nunset\n");
-        //printf("%d %d %d %d/n", current.x, current.y, current.num, current.pos);
+        //printf("%d %d %d %d\n", current.x, current.y, current.num, current.pos);
         for(i = 0; i < 5; ++i){
             for(j = 0; j < EXP_FACT; ++j) {
                 frame[current.x + shapes[current.num][current.pos][i][0]]
                 [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
-                //printf("%d ", frame[current.x + shapes[current.num][current.pos][i][0]]
-                //[current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j]);
+//                printf("%d ", frame[current.x + shapes[current.num][current.pos][i][0]]
+//                [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j]);
             }
             //printf("\n");
         }
@@ -158,12 +158,12 @@ void shape_set_unset(int n){ //chhhhanged
             //printf("\n");
         }
 
-        //sleep(10000);
-
         if(current.x < 1)
             for(i = 0; i < FRAMEW + 1; ++i)
                 frame[0][i] = Border;
-    }
+
+        frame_refresh();
+        }
     //pthread_mutex_unlock(&callFunc);
     //pthread_mutex_unlock(&locInfo);
 }
@@ -367,8 +367,10 @@ shape_go_down(void)
                   ++current.x;
           }
      else
-          if(current.x > 2)
-               shape_new();
+          if(current.x > 2){
+         //printf("semi done\n");
+              shape_new();
+     }
           /*
 		current.x값이 1이거나 그보다 작다면, Shape가 이동하지 않은 것
 		따라서 게임이 종료된 것으로 간주된다.

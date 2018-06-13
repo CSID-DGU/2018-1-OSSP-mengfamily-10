@@ -130,6 +130,7 @@ void sound(const char * filename, int len);
 //void *runner(void *param);
 void *inputThread(void *param);
 void *tetrominoShiftsThread(void *param);
+void delay(unsigned int sec);
 
 buffer_item buffer[BUFFER_SIZE];
 int count, in, out;

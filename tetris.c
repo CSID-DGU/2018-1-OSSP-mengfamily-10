@@ -469,6 +469,7 @@ main(int argc, char **argv)
 
       while(running)
      {
+         //printf("started loop\n");
          pthread_mutex_lock(&locInfo);
          shape_set_unset(1);
          pthread_mutex_unlock(&locInfo);
