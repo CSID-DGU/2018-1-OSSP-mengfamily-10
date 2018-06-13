@@ -139,11 +139,13 @@ shape_set(void)
 	정해진 frame[x][y] 위치에 current.num + 1의 값을 저장한다.
 	current.y = (FRAMEW / 2) - 1 = 24, #define FRAMEW (int)(10*2.3)
      */
+
      for(i = 0; i < 5; ++i)
           for(j = 0; j < EXP_FACT; ++j)
                frame[current.x + shapes[current.num][current.pos][i][0]] /* 1 + 1 */
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] /* 24 + 0 * 2 + 0 */
                     = current.num + 1; /* frame[0~5][0~54] = 0~6 + 1 */
+
      /* 
 	Current.num은 현재 블록의 모양을 정의, +1을 해주면 다음 블록 모양
 	Currnet.pos는 현재 블록의 포지션을 정의, 0~3까지의 숫자로 상하좌우를 표현
@@ -164,6 +166,7 @@ shape_set(void)
           for(i = 0; i < FRAMEW + 1; ++i)
                frame[0][i] = Border;
 
+
      return;
 }
 
@@ -179,7 +182,7 @@ shape_unset(void)
     int i, j;
 
 
-     for(i = 0; i < 5; ++i)
+    for(i = 0; i < 5; ++i)
           for(j = 0; j < EXP_FACT; ++j)
                frame[current.x + shapes[current.num][current.pos][i][0]]
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
@@ -273,8 +276,6 @@ revive(void) //테트리스 안에 모든 블럭을 초기화 해주는 함수
                 frame[i][j] = 0;
           }
         }
-
-        
  
         lifes --;
 }
@@ -296,6 +297,7 @@ shape_go_down(void)
      if(!check_possible_pos(current.x + 1, current.y))
           {
                   ++current.x;
+
           }
      else
           if(current.x > 2)
@@ -311,10 +313,6 @@ shape_go_down(void)
                sleep(2);
                running = False;
           }
-
-
-
-
      return;
 }
 
@@ -346,9 +344,9 @@ shape_move(int n)
 
      shape_unset();
 
-     if(!check_possible_pos(current.x, current.y + n))
-          current.y += n;
-
+     if(!check_possible_pos(current.x, current.y + n)) {
+         current.y += n;
+     }
      return;
 }
 
@@ -365,7 +363,7 @@ shape_drop(void)
           shape_unset();
           ++current.x;
      }
-  //   score += (FRAMEH - current.x)*2;
+     //score += (FRAMEH - current.x)*2;
      sound("slip.wav",300);
      return;
 }
