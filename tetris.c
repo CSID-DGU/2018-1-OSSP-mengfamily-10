@@ -434,7 +434,6 @@ int firstScoreGet()
     first = (atoi)(buff);
     return first;
 }
-
 void saveLifes(int user_idx)
 {
     int sock, item;
@@ -465,7 +464,6 @@ void saveLifes(int user_idx)
     close(sock);
 
 }
-
 void quit(char * name, int user_idx)
 {
     int rank = 0;
