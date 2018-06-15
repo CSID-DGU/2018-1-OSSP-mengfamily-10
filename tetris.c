@@ -71,7 +71,7 @@ int first(char * myId, char * myPwd)
             // serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
 
             if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1) {
-                printf("connect error");
+                //printf("connect error");
             }
 
             sprintf(buff,"%c|%s|%s",'1',myId,myPwd);
@@ -79,8 +79,8 @@ int first(char * myId, char * myPwd)
             //printf("%s\n",buff);
             memset(buff,0x00,sizeof(buff)); // empty buffer
             read(sock,buff,sizeof(buff)); // read socket from server
-            printf("\tuser_idx : ");
-            printf("%s\n",buff);
+            //printf("\tuser_idx : ");
+            //printf("%s\n",buff);
             if(buff != NULL){
                 printf("\t succes !");
             }
@@ -88,8 +88,9 @@ int first(char * myId, char * myPwd)
 
         } else if (sign == 2) {
             //for login
-            if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1)
-                printf("connect error");
+            if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1) {
+                //printf("connect error");
+            }
 
             sprintf(buff,"%c|%s|%s",'2',myId,myPwd);
             write(sock,buff,sizeof(buff)); // send socket to server
@@ -97,8 +98,8 @@ int first(char * myId, char * myPwd)
             memset(buff,0x00,sizeof(buff)); // empty buffer
             read(sock,buff,sizeof(buff)); // read socket from server
 
-            printf("\tuser_idx : ");
-            printf("%s\n",buff);
+            //printf("\tuser_idx : ");
+            //printf("%s\n",buff);
 
             if(buff != NULL){
                 printf("\t success !");
@@ -331,7 +332,7 @@ int previousScore(){
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+       // printf("connect error");
     }
     //socre get
     sprintf(buff, "%c|%d", '5', user_idx);
@@ -361,7 +362,7 @@ void ScoreUpdate()
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+      //  printf("connect error");
     }
     memset(buff, 0x00, sizeof(buff));
     sprintf(buff, "%c|%d|%d", '6', score, user_idx);
@@ -387,7 +388,7 @@ int rankGet()
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+       // printf("connect error");
     }
     //rank get
     memset(buff,0x00,sizeof(buff));
@@ -448,6 +449,10 @@ void saveLifes(int user_idx)
     serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
     serv_addr.sin_port=htons(3090);
 
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        //  printf("connect error");
+    }
+
     memset(buff, 0x00, sizeof(buff));
     sprintf(buff, "%c|%d|%d", '4', lifes, user_idx);
     write(sock, buff, sizeof(buff));
@@ -485,13 +490,13 @@ void quit(char * name, int user_idx)
             printf("\n\t당신은 현재 %d등 입니다. 1등의 %d점 도전해보세요! \n", rank, firstScore);
         }else{
             printf("\n\n\t축하합니다. %s님이 최고점수 %d점을 달성했습니다.\n", name, score);
-            printf("\n\t당신은 현재 1등 입니다. 본인의 최고 점수를 갱신해보세요! \n");
+            printf("\n\t당신은 현재 1등 입니다. 본인의 최고 점수를 갱신해보세요! \n\n");
         }
     }
     else {
         //rank get
         printf("\n\n\t실력이 많이 녹슬었군요. 과거의 %s님은 점수 %d점을 달성했습니다.\n\n",name,previous_score);
-        printf("\n\t 한번 더 도전해서, 과거의 자신을 뛰어 넘어 보세요!");
+        printf("\n\t 한번 더 도전해서, 과거의 자신을 뛰어 넘어 보세요!\n\n");
     }
         //save the lifes (rare items)
         saveLifes(user_idx);
@@ -548,7 +553,7 @@ int getLifes(int user_idx)
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+     //   printf("connect error");
     }
 
     sprintf(buff, "%c|%d", '3', user_idx);
