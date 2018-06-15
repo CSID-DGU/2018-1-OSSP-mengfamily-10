@@ -616,7 +616,6 @@ int main(int argc, char **argv)
 
       	if(score> 2000)
 	       printxy(0, FRAMEH_NB + 13, FRAMEW + 3, "***블록이 안보입니다***");
-
       	if(n >=1 && score >= 100)
         {
           	n--;
