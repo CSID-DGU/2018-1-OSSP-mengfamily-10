@@ -296,7 +296,13 @@ shape_go_down(void)
      */
      if(!check_possible_pos(current.x + 1, current.y))
           {
-                  ++current.x;
+                if(score <= 15) {
+                    current.x += 1;
+                    sleep(2);
+                } else{
+                    current.x += 2;
+                    sleep(2);
+                }
 
           }
      else

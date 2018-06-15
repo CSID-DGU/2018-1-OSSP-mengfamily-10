@@ -479,6 +479,11 @@ void saveLifes(int user_idx)
     serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
     serv_addr.sin_port=htons(3090);
 
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+
+
     memset(buff, 0x00, sizeof(buff));
     sprintf(buff, "%c|%d|%d", '4', lifes, user_idx);
     write(sock, buff, sizeof(buff));
@@ -564,6 +569,8 @@ int getLifes(int user_idx)
 
     sock = socket(PF_INET,SOCK_STREAM,0);
     memset(buff,0x00,sizeof(buff));
+
+
 
     memset(&serv_addr,0,sizeof(serv_addr));
     serv_addr.sin_family=AF_INET;
