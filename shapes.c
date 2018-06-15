@@ -435,7 +435,7 @@ shape_drop(void)
     
      while(!check_possible_pos(current.x + 1, current.y))
      {
-          shape_set_unset(0);
+          //shape_set_unset(0);
           ++current.x;
      }
      score += (FRAMEH - current.x)*2;

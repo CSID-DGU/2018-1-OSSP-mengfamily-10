@@ -137,8 +137,8 @@ get_key_event(int c)
     /*TODO sj
      * consider this*/
     pthread_mutex_lock(&locInfo);
-     if(c > 0)
-          --current.x;
+//     if(c > 0)
+//          --current.x;
 	 /*main함수중에 전체 루프중에 필수적으로 거치는 함수이자 입력받은 값에따라 게임 진행이 된다.
     여기서 key_pause와 key_quit는 게임을 계속 진행하는 대에 영향을 준다*/
      switch(c)
@@ -345,8 +345,8 @@ void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
 
     while(running){
         //printf("in while - inputTttttread\n");
-        item = getchar();
-        item = getchar();
+        //item = getchar();
+        //item = getchar();
         item = getchar();
         sem_wait(&empty);
 
@@ -355,10 +355,9 @@ void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
         //printf("mutextLocked\n");
 
         if(count != BUFFER_SIZE){
-            printf("%d\n", count);
+            printf("check the cout ::::::%d\n", count);
             buffer[in] = item;
             //clearBuffer();
-            //printf("gotoutof CB\n");
             in = (in+1)%BUFFER_SIZE;
             count++;
         }
@@ -391,7 +390,7 @@ void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 fr
             //shape_unset();
             //shape_set();
             //shape_unset();
-            shape_set_unset(1);
+            shape_set_unset(1); // wrong loc
         }
 
         pthread_mutex_unlock(&mutex);
