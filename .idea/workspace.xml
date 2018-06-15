@@ -28,8 +28,8 @@
       <file leaf-file-name="tetris.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tetris.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="467" column="1" lean-forward="true" selection-start-line="467" selection-start-column="1" selection-end-line="467" selection-end-column="1" />
+            <state relative-caret-position="234">
+              <caret line="436" column="0" lean-forward="true" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
               <folding>
                 <element signature="e#1746#1767#0" expanded="true" />
               </folding>
@@ -181,12 +181,12 @@
       <workItem from="1528730335766" duration="766000" />
       <workItem from="1528787623684" duration="32000" />
       <workItem from="1528863057606" duration="5081000" />
-      <workItem from="1528979308315" duration="608000" />
+      <workItem from="1528979308315" duration="905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23122000" />
+    <option name="totallyTimeSpent" value="23419000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="560" y="-4" width="1857" height="970" extended-state="6" />
@@ -623,8 +623,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tetris.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="467" column="1" lean-forward="true" selection-start-line="467" selection-start-column="1" selection-end-line="467" selection-end-column="1" />
+        <state relative-caret-position="234">
+          <caret line="436" column="0" lean-forward="true" selection-start-line="436" selection-start-column="0" selection-end-line="436" selection-end-column="0" />
           <folding>
             <element signature="e#1746#1767#0" expanded="true" />
           </folding>
