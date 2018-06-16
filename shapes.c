@@ -139,11 +139,13 @@ shape_set(void)
 	정해진 frame[x][y] 위치에 current.num + 1의 값을 저장한다.
 	current.y = (FRAMEW / 2) - 1 = 24, #define FRAMEW (int)(10*2.3)
      */
+
      for(i = 0; i < 5; ++i)
           for(j = 0; j < EXP_FACT; ++j)
                frame[current.x + shapes[current.num][current.pos][i][0]] /* 1 + 1 */
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] /* 24 + 0 * 2 + 0 */
                     = current.num + 1; /* frame[0~5][0~54] = 0~6 + 1 */
+
      /* 
 	Current.num은 현재 블록의 모양을 정의, +1을 해주면 다음 블록 모양
 	Currnet.pos는 현재 블록의 포지션을 정의, 0~3까지의 숫자로 상하좌우를 표현
@@ -164,6 +166,7 @@ shape_set(void)
           for(i = 0; i < FRAMEW + 1; ++i)
                frame[0][i] = Border;
 
+
      return;
 }
 
@@ -179,7 +182,7 @@ shape_unset(void)
     int i, j;
 
 
-     for(i = 0; i < 5; ++i)
+    for(i = 0; i < 5; ++i)
           for(j = 0; j < EXP_FACT; ++j)
                frame[current.x + shapes[current.num][current.pos][i][0]]
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
@@ -189,6 +192,39 @@ shape_unset(void)
                frame[0][i] = Border;
      return;
 }
+
+void
+shape_unset2(void)
+{
+    /* 이미 Set되어있는 Shapes를 제거하는 함수
+   (ex) 블록을 모두 채워서 한개의 줄이 사라져야하는 경우
+
+   배열 frame의 모든 속성값을 0으로 설정하여준다.
+   마찬가지로 current.x값이 1보다 작으면 프레임 보더로 인식한다.
+    */
+    int i, j;
+
+
+    for(i = 0; i < 5; ++i)
+        for(j = 0; j < EXP_FACT; ++j)
+            printxy(frame[current.x + shapes[current.num][current.pos][i][0]]
+                    [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j], current.x + shapes[current.num][current.pos][i][0],
+                    current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j, " ");
+
+
+    for(i = 0; i < 5; ++i)
+        for(j = 0; j < EXP_FACT; ++j)
+            printxy(frame[current.x + shapes[current.num][current.pos][i][0]]
+            [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j], current.x + shapes[current.num][current.pos][i][0],
+                    current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j, "▽");
+
+/*
+    if(current.x < 1)
+        for(i = 0; i < FRAMEW + 1; ++i)
+            frame[0][i] = Border;*/
+    return;
+}
+
 
 void
 shape_new(void)
@@ -273,8 +309,6 @@ revive(void) //테트리스 안에 모든 블럭을 초기화 해주는 함수
                 frame[i][j] = 0;
           }
         }
-
-        
  
         lifes --;
 }
@@ -283,7 +317,8 @@ void
 shape_go_down(void)
 {
 
-        shape_unset();
+
+    shape_unset();
 
      /* Fall the shape else; collision with the ground or another shape
       * then stop it and create another */
@@ -293,9 +328,15 @@ shape_go_down(void)
 	우선 현재 Shape의 위치를 체크하여 이동이 가능한지 파악하고, 가능하면 current.x 값을 1 증가.
 	이동이 불가능한 상태라면 이동을 중지하고 새로운 Shape를 생성한다.
      */
+
+     if(score <= 20)
+     {
+    // sleep(1);
+     }
+
      if(!check_possible_pos(current.x + 1, current.y))
           {
-                  ++current.x;
+                    current.x += 1;
           }
      else
           if(current.x > 2)
@@ -311,16 +352,13 @@ shape_go_down(void)
                sleep(2);
                running = False;
           }
-
-
-
-
      return;
 }
 
 void
 shape_set_position(int p)
 {
+
      /*
 	현재의 위치를 Old라는 변수에 저장한다 (Temporary)
      */
@@ -346,9 +384,9 @@ shape_move(int n)
 
      shape_unset();
 
-     if(!check_possible_pos(current.x, current.y + n))
-          current.y += n;
-
+     if(!check_possible_pos(current.x, current.y + n)) {
+         current.y += n;
+     }
      return;
 }
 
@@ -365,7 +403,7 @@ shape_drop(void)
           shape_unset();
           ++current.x;
      }
-  //   score += (FRAMEH - current.x)*2;
+     //score += (FRAMEH - current.x)*2;
      sound("slip.wav",300);
      return;
 }

@@ -135,12 +135,14 @@ void frame_refresh(void)      //테트리스 테두리
 void frame_preview(void)
 {
      int i, j;
+     int count = 0;
      int temp;
 
-     for(i = 0; i < FRAMEH + 1; ++i)
+     for(i = FRAMEH; i >= 1; i--)
      {
           for(j = 0; j < FRAMEW - 1; ++j)
-	  {
+          {
+
 		    if(j%2 == 1)
 		    {
                   	printxy(frame[i][j], i, j, " ");
@@ -154,12 +156,15 @@ void frame_preview(void)
 		   	    }
 			    else if(frame[i][j] != 0 ) //위에 블럭이 있을때
 			    {
-				    for(int k = i; k < FRAMEH - 1; ++k) 
+
+			        printxy(frame[i-1][j] ,i-1 ,j, "▽");
+
+				  /*  for(int k = i; k < FRAMEH - 1; ++k)
 			    	{
                         if((frame[k+1][j] == 0) ) //블록부분의 영역이 바뀌는걸 막아줌
                             printxy(frame[k + 1][j], k + 1, j, "▽");
 				    }
-
+*/
 			    }
 	 	    }
 
@@ -212,7 +217,10 @@ frame_nextbox_refresh(void)       //다음나올 상자와 모양
 		}
 	  }
 
-
      return;
 }
+
+
+
+
 

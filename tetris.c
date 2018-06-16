@@ -34,22 +34,89 @@
 #include "tetris.h"
 #include "config.h"
 
+int increase = 0;
+
 
 /* Functions */
 
-char* first(char * name)
+int first(char * myId, char * myPwd)
 {
+    int sock, sign;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+    sock = socket(PF_INET, SOCK_STREAM,0);
 
-    char start;
-    printf("\n\n\t당신의 이름은? ");
-    scanf("%s",name);
-    printf("\n\n\t\t\tpress enter to enter game!");	 //tab세번이 적절
-    while (1) {
-        start = getchar();
-        if (start == '\n')break;
+    memset(buff,0x00,sizeof(buff));
+    memset(myId,0x00,sizeof(myId));
+    memset(myPwd,0x00,sizeof(myPwd));
+    memset(&serv_addr,0,sizeof(serv_addr));
+
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+
+    system("clear");
+    printf("\n\n\t -------LOGIN--------\n\n");
+    printf("\tID : ");
+    scanf("%s",myId);
+
+    printf("\tPW : ");
+    scanf("%s",myPwd);
+    printf("\n\n");
+
+    while(1) {
+        printf("\t[1]signup [2]signin : ");
+        scanf("%d", &sign);
+
+        if (sign == 1) {
+            //for signup
+            // serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+
+            if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1) {
+                printf("connect error");
+            }
+
+            sprintf(buff,"%c|%s|%s",'1',myId,myPwd);
+            write(sock,buff,sizeof(buff)); // send socket to server
+            //printf("%s\n",buff);
+            memset(buff,0x00,sizeof(buff)); // empty buffer
+            read(sock,buff,sizeof(buff)); // read socket from server
+            printf("\tuser_idx : ");
+            printf("%s\n",buff);
+            if(buff != NULL){
+                printf("\t succes !");
+            }
+            break;
+
+        } else if (sign == 2) {
+            //for login
+            if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))== -1)
+                printf("connect error");
+
+            sprintf(buff,"%c|%s|%s",'2',myId,myPwd);
+            write(sock,buff,sizeof(buff)); // send socket to server
+            //printf("%s\n",buff);
+            memset(buff,0x00,sizeof(buff)); // empty buffer
+            read(sock,buff,sizeof(buff)); // read socket from server
+
+            printf("\tuser_idx : ");
+            printf("%s\n",buff);
+
+            if(buff != NULL){
+                printf("\t success !");
+            }
+            break;
+
+        } else {
+            printf("It is wrong");
+        }
     }
-    return name;
+    close(sock);
+    user_idx = (atoi)(buff);
+    return user_idx;
 }
+
 void init(void)
 {
 
@@ -168,18 +235,27 @@ arrange_score(int l)
         case 4: score += 40; break; /* Four lines */
     }
 
-
-
     if(score >= prescore + 100 +(level - 1) * 50)
     {
         prescore = prescore + 100 +(level - 1) * 50;
         level +=1;
         if(prelevel < level)
-        {block_down();
+        {
+            lifes+=1;
+            increase = 1;
+            block_down();
             sound("nope.wav", 400);
         }
+        else
+        {
+            increase = 0;
+        }
+    }
+    else{
+        increase = 0;
     }
     lines += l;
+
 
     DRAW_SCORE();
 
@@ -193,34 +269,39 @@ void arrange_score2(int height)
     return;
 }
 
+void arrange_score3(int check)
+{
+    score+=((check) * 10);
+    DRAW_SCORE();
+    return;
+
+}
 
 void
 check_plain_line(void)
 {
+    score+=3;
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
         exit;
     }
 
-    if(check != 0)
-    {
-        score+= check * 10;
-    }
-
+    int check_line = 0;
     int i, j, k, f, c = 0, nl = 0;
 
     for(i = 1; i < FRAMEH; ++i)
     {
-
         for(j = 1; j < FRAMEW; ++j)
             if(frame[i][j] == 0)
-            {    ++c;
+            {
+                ++c;
             }
 
         if(!c)
         {
-      //      arrange_score2(i + 1);
+          arrange_score2(i + 1);
             ++nl;
+            ++check_line;
 
             sound("pop.wav",400);
 
@@ -234,14 +315,16 @@ check_plain_line(void)
         c = 0;
     }
 
-  if(nl != 0)
-  {
-   check +=1;
-  } else{
+    if(check_line != 0)
+    {
+        arrange_score3(check);
+
+        check++;
+
+    }
+    else {
         check = 0;
     }
-
-     nl = 0;
 
     arrange_score(nl);
     frame_refresh();
@@ -263,43 +346,191 @@ check_possible_pos(int x, int y)
     return c;
 }
 
-void quit(char * name)
+int previousScore(){
+    int sock,previous_score;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+    //socre get
+    sprintf(buff, "%c|%d", '5', user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    //printf("current score : ");
+    previous_score = (atoi)(buff);
+    close(sock);
+    return previous_score;
+}
+
+void ScoreUpdate()
 {
-    FILE *rp;
-    rp = fopen ("score.txt","a+");
-    int best_sc;
-    fscanf(rp,"%d",&best_sc);
+    int sock;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+    memset(buff, 0x00, sizeof(buff));
+    sprintf(buff, "%c|%d|%d", '6', score, user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    close(sock);
+}
+
+int rankGet()
+{
+    int sock,rank;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+    //rank get
+    memset(buff,0x00,sizeof(buff));
+    sprintf(buff, "%c|%d", '7', user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    //printf("my Rank : ");
+    rank = (atoi)(buff)+1;
+    //printf("%c\n",buff[9]);
+    // printf("%d\n", myRank);
+    close(sock);
+    return rank;
+}
 
 
+int firstScoreGet()
+{
+    int sock,first=0;
+    char buff[1000];
+    struct sockaddr_in serv_addr;
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+
+    memset(buff,0x00,sizeof(buff));
+    sprintf(buff, "%c|", '8');
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    first = (atoi)(buff);
+    return first;
+}
+
+
+void saveLifes(int user_idx)
+{
+    int sock, item;
+    struct sockaddr_in serv_addr;
+    char buff[1000];
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+
+
+    memset(buff, 0x00, sizeof(buff));
+    sprintf(buff, "%c|%d|%d", '4', lifes, user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n",buff);
+    item = (atoi)(buff);
+    // printf("%d\n",myItem);
+    close(sock);
+
+}
+
+void quit(char * name, int user_idx)
+{
+    int rank = 0;
+    int firstScore = 0;
     char end;
+    int previous_score = -1;
+
     frame_refresh(); /* Redraw a last time the frame */
 
     set_cursor(True); //이 함수로인해 터미널창 커서가 숨김에서 풀린다
     tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미,
 
-    if(best_sc<score)
-    {
-        printf("\n\n\n%d ",best_sc);
-        if(best_sc != 0)
-        {
-            FILE *wp;
-            wp = fopen ("score.txt","w");
-            fprintf(wp,"%d %s",score,name);
-            fclose(wp);
-        }
-        else
-        {
-            fprintf(rp,"%d %s",score,name);
-            printf("\n\n\nsad");
-        }
-        printf("\n\n\t축하합니다. %s님이 레벨 %d, 최고점수 %d 점을 달성했습니다.\n\n",name,level,score);
-    }
-    else
-    {
-        printf("\n\n\t수고하셨습니다. %s님의 레벨 %d, 점수는: %d입니다.\n\n",name,level, score);
-    }
-    fclose(rp);
+    previous_score = previousScore();
+    if(score > previous_score){
 
+        ScoreUpdate();
+        rank = rankGet();
+        firstScore = firstScoreGet();
+
+        if(rank != 1) {
+            printf("\n\n\t축하합니다. %s님이 최고점수 %d점을 달성했습니다.\n", name, score);
+            printf("\n\t당신은 현재 %d등 입니다. 1등의 %d점 도전해보세요! \n\n", rank, firstScore);
+        }else{
+            printf("\n\n\t축하합니다. %s님이 최고점수 %d점을 달성했습니다.\n", name, score);
+            printf("\n\t당신은 현재 1등 입니다. 본인의 최고 점수를 갱신해보세요! \n\n");
+        }
+    }
+    else {
+        //rank get
+        printf("\n\n\t실력이 많이 녹슬었군요. 과거의 %s님은 점수 %d점을 달성했습니다.\n\n",name,previous_score);
+        printf("\n\t 한번 더 도전해서, 과거의 자신을 뛰어 넘어 보세요!\n");
+    }
+    //save the lifes (rare items)
+    saveLifes(user_idx);
     printf("\n\n\t\t\tpress enter to end the game!\n");
     while (1) {
         end = getchar();
@@ -308,7 +539,6 @@ void quit(char * name)
     set_cursor(True);
     tcsetattr(0, TCSANOW, &back_attr); //TCSANOW는 즉시속성을 변경을 의미, 터미널 세팅을 되돌리기
     system("clear"); //입력창이 다 밑으로 내려가서 이걸로하면 다시위로감
-
 
     return;
 }
@@ -330,6 +560,41 @@ void music(const char * filename, int len){
 
 
 }
+
+int getLifes(int user_idx)
+{
+    int sock, item;
+    struct sockaddr_in serv_addr;
+    char buff[1000];
+
+    sock = socket(PF_INET,SOCK_STREAM,0);
+    memset(buff,0x00,sizeof(buff));
+
+
+
+    memset(&serv_addr,0,sizeof(serv_addr));
+    serv_addr.sin_family=AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("13.209.29.192");
+    serv_addr.sin_port=htons(3090);
+
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
+        printf("connect error");
+    }
+
+    sprintf(buff, "%c|%d", '3', user_idx);
+    write(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    memset(buff, 0x00, sizeof(buff));
+    read(sock, buff, sizeof(buff));
+    //printf("%s\n", buff);
+    //printf("item number : ");
+    item = (atoi)(buff);
+    //printf("%c\n",buff[9]);
+    //printf("%d\n", myItem);
+    close(sock);
+    return item;
+}
+
 void sound(const char * filename, int len){
     initAudio();
     Audio * sound = createAudio(filename, 0, SDL_MIX_MAXVOLUME / 2);
@@ -339,7 +604,6 @@ void sound(const char * filename, int len){
     freeAudio(sound);
 }
 
-
 int
 main(int argc, char **argv)
 {
@@ -347,16 +611,24 @@ main(int argc, char **argv)
     level = 1;
     int n =1;
     current.last_move = False;
-    lifes = 2;
+    //lifes = 0;
     lines = 0;
-    char myname[10];
+
+    //for signup, loging
+    char myId[100];
+    char myPwd[100];
+    int user_idx = -1;
+
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
         exit;
     }
 
-    first(myname);
+    //first(myname);
+    user_idx = first(myId, myPwd);
+    lifes = getLifes(user_idx);
+
     //초기음악
     sound("test.wav", 2000);
     init(); //게임 진행중에도 게임 사용법 보여
@@ -364,26 +636,34 @@ main(int argc, char **argv)
     frame_nextbox_init();;
     //여기까지 게임을 초기화하는 부분
 
+    int num = 0;
+
     while(running)
     {
-        int ranNum = nrand(1,300);
         get_key_event();
         shape_set();
-        if(score<2000)       //레벨 5가 되면 블록이 안보임
+
+        if(increase == 1)
+        {
+                printxy(0, FRAMEH_NB + 13, FRAMEW + 3, "***블록이 안보입니다***");
+
+        }
+       else        //레벨 5가 되면 블록이 안보임                     //----------------------seungmin here score modified need!!
         {
             frame_refresh();
             frame_preview();
         }
+
+     //   sleep(10);
        // view();
         shape_go_down();
 
-        if(score> 2000)
-            printxy(0, FRAMEH_NB + 13, FRAMEW + 3, "***블록이 안보입니다***");
+
 
     }	//이것이 게임루프의 주축이 되는 부분
 
     sound("violin.wav",9000);
     SDL_Quit();
-    quit(myname);
+    quit(myId, user_idx);
     return 0;
 }

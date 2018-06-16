@@ -39,6 +39,11 @@
 #include <string.h>
 #include <sys/time.h>
 #include <SDL2/SDL.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include "audio.h"
   
 /* Expension factor of shapes */
@@ -99,6 +104,7 @@ void view(void);
 /* shapes.c */
 void shape_set(void);
 void shape_unset(void);
+void shape_unset2(void);
 void shape_new(void);
 void shape_go_down(void);
 void shape_set_position(int);
@@ -109,16 +115,19 @@ void revive(void);
 int height;
 
 /* tetris.c */
+
 int height;
 int check;
-char* first(char * name);
+//char* first(char * name);
+int first(char * myId, char * myPwd);
 void init(void);
 void arrange_score(int l);
 void arrange_score2(int h);
 void check_plain_line(void);
 int check_possible_pos(int, int);
 void get_key_event(void);
-void quit(char * name);
+//void quit(char * name);
+void quit(char * name,int user_idx);
 void music(const char * filename, int len);
 void sound(const char * filename, int len);
 /* Variables */
@@ -133,6 +142,7 @@ int score;
 int lines;
 int level;
 int lifes;
+int user_idx;
 
 Bool running;
 
