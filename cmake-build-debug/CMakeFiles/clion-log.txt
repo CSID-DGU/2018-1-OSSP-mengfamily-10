@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 /home/dek/clion-2017.3.4/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10
+=======
+/home/chloe/clion-2018.1.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10
+>>>>>>> master
 -- Configuring done
+CMake Error at CMakeLists.txt:10 (add_executable):
+  Target "2017_2_OSSP_Dongguk_Banjeom_4_master" links to item
+  "-L/usr/lib/x86_64-linux-gnu -lSDL2 " which has leading or trailing
+  whitespace.  This is now an error according to policy CMP0004.
+
+
 -- Generating done
+<<<<<<< HEAD
 -- Build files have been written to: /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug
+=======
+-- Build files have been written to: /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug
+>>>>>>> master
