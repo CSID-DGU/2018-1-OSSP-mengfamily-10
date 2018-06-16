@@ -17,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/test" beforeDir="false" afterPath="$PROJECT_DIR$/test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tetris.c" beforeDir="false" afterPath="$PROJECT_DIR$/tetris.c" afterDir="false" />
     </list>
+  
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,6 +32,7 @@
       <file leaf-file-name="tetris.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tetris.c">
           <provider selected="true" editor-type-id="text-editor">
+            
             <state relative-caret-position="60">
               <caret line="136" column="13" lean-forward="true" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
               <folding>
@@ -81,6 +83,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="776">
               <caret line="427" column="4" lean-forward="true" selection-start-line="427" selection-start-column="4" selection-end-line="427" selection-end-column="4" />
+
             </state>
           </provider>
         </entry>
@@ -88,6 +91,7 @@
       <file leaf-file-name="tetris.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tetris.h">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="1980">
               <caret line="132" column="29" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
               <folding>
@@ -103,6 +107,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+
             </state>
           </provider>
         </entry>
@@ -111,6 +116,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+
       <find>SHAPE_SET_</find>
       <find>SHAPE_un</find>
       <find>in</find>
@@ -141,6 +147,7 @@
       <find>set_unse</find>
       <find>del</find>
       <find>shape_drop</find>
+
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,10 +156,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+
         <option value="$PROJECT_DIR$/buffer.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/audio.c" />
         <option value="$PROJECT_DIR$/util.c" />
+
         <option value="$PROJECT_DIR$/tetris.h" />
         <option value="$PROJECT_DIR$/shapes.c" />
         <option value="$PROJECT_DIR$/tetris.c" />
@@ -168,17 +177,20 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
+
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="75" />
     <option name="y" value="-4" />
     <option name="width" value="1015" />
     <option name="height" value="904" />
+
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
+
     <panes>
       <pane id="ProjectPane">
         <subPane>
@@ -197,6 +209,7 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="project&#9;ACTION&#9;ActivateProjectToolWindow&#10;pro&#9;ACTION&#9;ActivateProjectToolWindow&#10;open recent&#9;ACTION&#9;$LRU&#10;import&#9;ACTION&#9;CPP.ImportCMakeProject" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -214,7 +227,9 @@
   </component>
   <component name="RunManager" selected="Application.2017_2_OSSP_Dongguk_Banjeom_4_master">
     <configuration name="2017_2_OSSP_Dongguk_Banjeom_4_master" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2017_2_OSSP_Dongguk_Banjeom_4_master" TARGET_NAME="2017_2_OSSP_Dongguk_Banjeom_4_master" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2017_2_OSSP_Dongguk_Banjeom_4_master" RUN_TARGET_NAME="2017_2_OSSP_Dongguk_Banjeom_4_master" />
+
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2017_2_OSSP_Dongguk_Banjeom_4_master" RUN_TARGET_NAME="2017_2_OSSP_Dongguk_Banjeom_4_master" EXPLICIT_BUILD_TARGET_NAME="all" />
+
     <list>
       <item itemvalue="Application.Build All" />
       <item itemvalue="Application.2017_2_OSSP_Dongguk_Banjeom_4_master" />
@@ -225,6 +240,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+
       <changelist id="8da09116-1305-4598-8db4-4b8882116d07" name="Default" comment="" />
       <created>1525849412850</created>
       <option name="number" value="Default" />
@@ -247,10 +263,12 @@
       <workItem from="1528798373057" duration="5535000" />
       <workItem from="1528863140550" duration="8652000" />
       <workItem from="1529087627569" duration="2209000" />
+
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="48152000" />
   </component>
   <component name="ToolWindowManager">
@@ -275,6 +293,7 @@
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" visible="true" weight="0.4401451" />
     </layout>
+
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -282,6 +301,7 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="2" />
@@ -340,11 +360,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4485">
           <caret line="299" column="9" selection-start-line="299" selection-start-column="9" selection-end-line="299" selection-end-column="9" />
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tetris.h">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="2310">
           <caret line="154" column="6" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="6" />
           <folding>
@@ -368,11 +390,13 @@
           <folding>
             <element signature="e#1746#1767#0" expanded="true" />
           </folding>
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/audio.h">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="1635">
           <caret line="109" column="2" selection-start-line="109" selection-start-column="2" selection-end-line="109" selection-end-column="2" />
         </state>
@@ -625,11 +649,13 @@
           <folding>
             <element signature="e#1746#1767#0" expanded="true" />
           </folding>
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tetris.h">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="630">
           <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
         </state>
@@ -670,11 +696,13 @@
           <folding>
             <element signature="e#624#643#0" expanded="true" />
           </folding>
+
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/util.c">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="1605">
           <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
         </state>
@@ -705,6 +733,7 @@
           <folding>
             <element signature="e#1746#1767#0" expanded="true" />
           </folding>
+
         </state>
       </provider>
     </entry>
