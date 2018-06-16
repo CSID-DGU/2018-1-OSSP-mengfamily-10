@@ -30,6 +30,8 @@
  *      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef TETRIS_H
+#define TETRIS_H
 /* Libs */
 #include <stdlib.h>
 #include <stdio.h>
@@ -45,6 +47,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include "audio.h"
+#include "buffer.h"
+/*TODO sj*/
+#include <pthread.h>
+#include <semaphore.h>
   
 /* Expension factor of shapes */
 #define EXP_FACT 2
@@ -99,10 +105,12 @@ void frame_nextbox_init(void);
 void frame_refresh(void);
 void frame_preview(void);
 void frame_nextbox_refresh(void);
+void view(void);
 
 /* shapes.c */
-void shape_set(void);
+void shape_set_unset(int n);
 void shape_unset(void);
+void shape_unset2(void);
 void shape_new(void);
 void shape_go_down(void);
 void shape_set_position(int);
@@ -110,20 +118,52 @@ void shape_move(int);
 void shape_drop(void);
 void block_down(void);
 void revive(void);
+int height;
 
 /* tetris.c */
 
+<<<<<<< HEAD
+=======
+int height;
+int check;
+//char* first(char * name);
+>>>>>>> master
 int first(char * myId, char * myPwd);
 void init(void);
 void arrange_score(int l);
 void arrange_score2(int h);
 void check_plain_line(void);
 int check_possible_pos(int, int);
+<<<<<<< HEAD
 void get_key_event(void);
 void quit(char * name,int user_idx);
+=======
+
+/*TODO sj
+ * changed param*/
+void get_key_event(int c);
+void quit(char * name,int user_idx);
+
+>>>>>>> master
 void music(const char * filename, int len);
 void sound(const char * filename, int len);
-/* Variables */
+
+/*TODO sj
+ * 스레드를 위한 함수들*/
+//void *runner(void *param);
+void *inputThread(void *param);
+void *tetrominoShiftsThread(void *param);
+void delay(unsigned int sec);
+
+buffer_item buffer[BUFFER_SIZE];
+int count, in, out;
+sem_t empty, full;
+pthread_mutex_t mutex;
+pthread_mutex_t callFunc;
+pthread_mutex_t locInfo;
+
+//int whichThread[2] = {0, 1};
+///* Variables */
 
 const int shapes[10][4][5][2];
 struct itimerval tv;
@@ -136,6 +176,12 @@ int score;
 int lines;
 int level;
 int lifes;
+int user_idx;
 
 Bool running;
 
+//////int speenOnLevel[5] = {1, 0.7, 0.5, 0.4, 0.3}; // parameter for sleep()
+/*TODO sj 승민아 이 배열 바꿔서 적용시키면 레벨별로 내려오는 시간 다르게 할 수 있어*/
+int whichLevel;
+
+#endif
