@@ -361,7 +361,7 @@ static void addMusic(Audio * root, Audio * new)
 
             rootNext->fade = 1;
         }
-        /* Set flag to remove any queued up music in favour of new music */
+            /* Set flag to remove any queued up music in favour of new music */
         else if(rootNext->loop == 1 && rootNext->fade == 1)
         {
             musicFound = 1;

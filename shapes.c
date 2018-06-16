@@ -121,10 +121,72 @@ const int shapes[10][4][5][2] =
 };
 
 
+void shape_set_unset(int n){ //chhhhanged
+    //pthread_mutex_lock(&callFunc);
+    //pthread_mutex_lock(&locInfo);
+    int i,j;
+
+    if(n != 1){
+        //printf("\nunset\n");
+        //printf("%d %d %d %d\n", current.x, current.y, current.num, current.pos);
+        for(i = 0; i < 5; ++i){
+            for(j = 0; j < EXP_FACT; ++j) {
+                frame[current.x + shapes[current.num][current.pos][i][0]]
+                [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
+//                printf("%d ", frame[current.x + shapes[current.num][current.pos][i][0]]
+//                [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j]);
+            }
+            //printf("\n");
+        }
+    // erase it
+
+        if(current.x < 1)
+          for(i = 0; i < FRAMEW + 1; ++i)
+            frame[0][i] = Border;
+    }
+    if(n != 0){
+        //printf("\nset\n");
+        //printf("%d %d %d %d", current.x, current.y, current.num, current.pos);
+        for(i = 0; i < 5; ++i) {
+            for (j = 0; j < EXP_FACT; ++j) {
+                frame[current.x + shapes[current.num][current.pos][i][0]] /* 1 + 1 */
+                [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] /* 24 + 0 * 2 + 0 */
+                        = current.num + 1; /* frame[0~5][0~54] = 0~6 + 1 */
+                //printf("%d ", frame[current.x + shapes[current.num][current.pos][i][0]]
+                //[current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j]);
+            }
+            //printf("\n");
+        }
+
+        if(current.x < 1)
+            for(i = 0; i < FRAMEW + 1; ++i)
+                frame[0][i] = Border;
+
+        frame_refresh();
+        }
+    //pthread_mutex_unlock(&callFunc);
+    //pthread_mutex_unlock(&locInfo);
+}
+
 void
 shape_set(void)
 {
+    //printf("shape set\n");
+
+
+    //pthread_mutex_lock(&callFunc);
      int i, j;
+
+
+//    for(i = 0; i < 5; ++i)
+//        for(j = 0; j < EXP_FACT; ++j)
+//            frame[current.x + shapes[current.num][current.pos][i][0]]
+//            [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
+//    // erase it
+//
+//    if(current.x < 1)
+//        for(i = 0; i < FRAMEW + 1; ++i)
+//            frame[0][i] = Border;
      
      /* frame[FRAMEH+1][FRAMEW+1]
         FRAMEH: 프레임의 높이, FRAMEW: 프레임의 넓이
@@ -146,6 +208,7 @@ shape_set(void)
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] /* 24 + 0 * 2 + 0 */
                     = current.num + 1; /* frame[0~5][0~54] = 0~6 + 1 */
 
+//    printf("%d %d %d %d", current.x, current.y, current.num, current.pos);
      /* 
 	Current.num은 현재 블록의 모양을 정의, +1을 해주면 다음 블록 모양
 	Currnet.pos는 현재 블록의 포지션을 정의, 0~3까지의 숫자로 상하좌우를 표현
@@ -166,30 +229,34 @@ shape_set(void)
           for(i = 0; i < FRAMEW + 1; ++i)
                frame[0][i] = Border;
 
-
      return;
 }
 
 void
 shape_unset(void)
 {
+    //printf("shape unset\n");
      /* 이미 Set되어있는 Shapes를 제거하는 함수
 	(ex) 블록을 모두 채워서 한개의 줄이 사라져야하는 경우
 
 	배열 frame의 모든 속성값을 0으로 설정하여준다.
 	마찬가지로 current.x값이 1보다 작으면 프레임 보더로 인식한다.
      */
+
     int i, j;
+
 
 
     for(i = 0; i < 5; ++i)
           for(j = 0; j < EXP_FACT; ++j)
                frame[current.x + shapes[current.num][current.pos][i][0]]
                     [current.y + shapes[current.num][current.pos][i][1] * EXP_FACT + j] = 0;
+     // erase it
 
      if(current.x < 1)
           for(i = 0; i < FRAMEW + 1; ++i)
                frame[0][i] = Border;
+     //pthread_mutex_unlock(&callFunc);
      return;
 }
 
@@ -232,7 +299,8 @@ shape_new(void)
      int i;
 
      /* Draw the previous shape for it stay there */
-     shape_set();
+    shape_set_unset(1);
+
      check_plain_line();
 
      /* Set the new shape property */
@@ -317,8 +385,9 @@ void
 shape_go_down(void)
 {
 
+    pthread_mutex_lock(&locInfo);
+    shape_set_unset(0);
 
-    shape_unset();
 
      /* Fall the shape else; collision with the ground or another shape
       * then stop it and create another */
@@ -339,19 +408,26 @@ shape_go_down(void)
                     current.x += 1;
           }
      else
-          if(current.x > 2)
-               shape_new();
+          if(current.x > 2){
+         //printf("semi done\n");
+              shape_new();
+     }
           /*
 		current.x값이 1이거나 그보다 작다면, Shape가 이동하지 않은 것
 		따라서 게임이 종료된 것으로 간주된다.
 	  */
           else
           {
+              printf("shapegodownRUNNING FALSE\n");
                shape_new();
                frame_refresh();
                sleep(2);
                running = False;
           }
+
+
+          pthread_mutex_unlock(&locInfo);
+          //shape_set();
      return;
 }
 
@@ -364,7 +440,7 @@ shape_set_position(int p)
      */
      int old = current.pos;
 
-     shape_unset();
+     shape_set_unset(0);
 
      /*
 	P값을 현재의 위치로 설정한다
@@ -382,7 +458,7 @@ void
 shape_move(int n)
 {
 
-     shape_unset();
+     shape_set_unset(0);
 
      if(!check_possible_pos(current.x, current.y + n)) {
          current.y += n;
@@ -400,7 +476,7 @@ shape_drop(void)
     
      while(!check_possible_pos(current.x + 1, current.y))
      {
-          shape_unset();
+          //shape_set_unset(0);
           ++current.x;
      }
      //score += (FRAMEH - current.x)*2;
