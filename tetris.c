@@ -654,6 +654,7 @@ main(int argc, char **argv)
             frame_preview();
         }
 
+     //   sleep(10);
        // view();
         shape_go_down();
 
