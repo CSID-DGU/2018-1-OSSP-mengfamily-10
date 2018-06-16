@@ -104,6 +104,7 @@ void view(void);
 /* shapes.c */
 void shape_set(void);
 void shape_unset(void);
+void shape_unset2(void);
 void shape_new(void);
 void shape_go_down(void);
 void shape_set_position(int);
