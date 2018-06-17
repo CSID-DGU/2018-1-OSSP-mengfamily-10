@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir
+=======
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir
+>>>>>>> master

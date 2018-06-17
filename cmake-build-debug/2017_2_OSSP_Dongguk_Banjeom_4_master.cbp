@@ -8,6 +8,40 @@
 		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\SDL2\;"/>
 		<Build>
 			<Target title="all">
+<<<<<<< HEAD
+				<Option working_dir="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="2017_2_OSSP_Dongguk_Banjeom_4_master">
+				<Option output="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/2017_2_OSSP_Dongguk_Banjeom_4_master" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+=======
 				<Option working_dir="/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
@@ -40,6 +74,7 @@
 			<Target title="2017_2_OSSP_Dongguk_Banjeom_4_master">
 				<Option output="/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/2017_2_OSSP_Dongguk_Banjeom_4_master" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+>>>>>>> master
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -55,6 +90,17 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
+					<Build command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="2017_2_OSSP_Dongguk_Banjeom_4_master/fast">
+				<Option output="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/2017_2_OSSP_Dongguk_Banjeom_4_master" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+=======
 					<Build command="/usr/bin/make -f &quot;/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 2017_2_OSSP_Dongguk_Banjeom_4_master"/>
 					<CompileFile command="/usr/bin/make -f &quot;/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -64,6 +110,7 @@
 			<Target title="2017_2_OSSP_Dongguk_Banjeom_4_master/fast">
 				<Option output="/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/2017_2_OSSP_Dongguk_Banjeom_4_master" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug"/>
+>>>>>>> master
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -79,6 +126,47 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
+<<<<<<< HEAD
+					<Build command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 2017_2_OSSP_Dongguk_Banjeom_4_master/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.c">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.h">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/client.c">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/config.h">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/frame.c">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/shapes.c">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.c">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.h">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/util.c">
+			<Option target="2017_2_OSSP_Dongguk_Banjeom_4_master"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/../../../../usr/local/lib/cmake/SDL2/sdl2-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\lib\cmake\SDL2\"/>
+=======
 					<Build command="/usr/bin/make -f &quot;/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 2017_2_OSSP_Dongguk_Banjeom_4_master/fast"/>
 					<CompileFile command="/usr/bin/make -f &quot;/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -f &quot;/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -118,6 +206,7 @@
 		</Unit>
 		<Unit filename="/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/../../../../../usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\SDL2\"/>
+>>>>>>> master
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

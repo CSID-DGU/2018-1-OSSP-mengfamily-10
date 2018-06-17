@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/shapes.c.o"
   "CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/tetris.c.o"
   "CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/util.c.o"
+  "CMakeFiles/2017_2_OSSP_Dongguk_Banjeom_4_master.dir/client.c.o"
   "2017_2_OSSP_Dongguk_Banjeom_4_master.pdb"
   "2017_2_OSSP_Dongguk_Banjeom_4_master"
 )

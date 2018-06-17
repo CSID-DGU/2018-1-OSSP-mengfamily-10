@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.c
+=======
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.c
+>>>>>>> master
 stdint.h
 -
 stdio.h
@@ -16,6 +20,33 @@ stdlib.h
 SDL2/SDL.h
 -
 audio.h
+<<<<<<< HEAD
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.h
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.h
+SDL2/SDL.h
+-
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/config.h
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/frame.c
+tetris.h
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.h
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/shapes.c
+tetris.h
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.h
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.c
+SDL2/SDL.h
+-
+tetris.h
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.h
+config.h
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/config.h
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.h
+=======
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.h
 
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.h
@@ -45,6 +76,7 @@ buffer.h
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/buffer.h
 
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
+>>>>>>> master
 stdlib.h
 -
 stdio.h
@@ -61,7 +93,28 @@ sys/time.h
 -
 SDL2/SDL.h
 -
+string.h
+-
+unistd.h
+-
+arpa/inet.h
+-
+sys/types.h
+-
+sys/socket.h
+-
 audio.h
+<<<<<<< HEAD
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/audio.h
+
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/util.c
+sys/time.h
+-
+tetris.h
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/tetris.h
+config.h
+/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/config.h
+=======
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.h
 buffer.h
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/buffer.h
@@ -77,4 +130,5 @@ tetris.h
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
 config.h
 /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/config.h
+>>>>>>> master
 

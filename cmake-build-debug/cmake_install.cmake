@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# Install script for directory: /home/dek/CLionProjects/2018-1-OSSP-mengfamily-10
+=======
 # Install script for directory: /home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10
+>>>>>>> master
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +49,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
+file(WRITE "/home/dek/CLionProjects/2018-1-OSSP-mengfamily-10/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+=======
 file(WRITE "/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> master
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
