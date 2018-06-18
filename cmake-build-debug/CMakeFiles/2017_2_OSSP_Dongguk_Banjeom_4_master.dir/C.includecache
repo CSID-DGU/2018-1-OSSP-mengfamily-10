@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/audio.c
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.c
 stdint.h
 -
 stdio.h
@@ -16,31 +16,35 @@ stdlib.h
 SDL2/SDL.h
 -
 audio.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/audio.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.h
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/audio.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.h
 SDL2/SDL.h
 -
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/config.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/buffer.h
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/frame.c
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/config.h
+
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/frame.c
 tetris.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/shapes.c
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/shapes.c
 tetris.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.c
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.c
 SDL2/SDL.h
 -
 tetris.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
 config.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/config.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/config.h
+buffer.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/buffer.h
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
 stdlib.h
 -
 stdio.h
@@ -58,13 +62,19 @@ sys/time.h
 SDL2/SDL.h
 -
 audio.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/audio.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/audio.h
+buffer.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/buffer.h
+pthread.h
+-
+semaphore.h
+-
 
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/util.c
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/util.c
 sys/time.h
 -
 tetris.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/tetris.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/tetris.h
 config.h
-/home/dek/Documents/2017-2-OSSP-Dongguk_Banjeom-4-master/config.h
+/home/chloe/CLionProjects/meng/2018-1-OSSP-mengfamily-10/config.h
 

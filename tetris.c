@@ -33,10 +33,14 @@
 #include <SDL2/SDL.h>
 #include "tetris.h"
 #include "config.h"
+#include "buffer.h"
+//#include <unistd.h>
 
 int increase = 0;
 
 
+int whichThread[2] = {0, 1};
+long speenOnLevel[5] = {100000, 0.7, 0.5, 0.4, 0.3};
 /* Functions */
 
 int first(char * myId, char * myPwd)
@@ -192,39 +196,48 @@ void init(void)
     return;
 }
 
+/*TODO sj todo
+ * 사용자 입력이 들어오면 isChange를 바꿔줘야함 // flag 역할을 함
+ * CHECK KEY_MOVE_DOWN*/
 void
-get_key_event(void)
+get_key_event(int c)
 {
-    int c = getchar();
-
-    if(c > 0)
-        --current.x;
-    /*main함수중에 전체 루프중에 필수적으로 거치는 함수이자 입력받은 값에따라 게임 진행이 된다.
-   여기서 key_pause와 key_quit는 게임을 계속 진행하는 대에 영향을 준다*/
-    switch(c)
-    {
-        case KEY_MOVE_LEFT:            shape_move(-EXP_FACT);              break;
-        case KEY_MOVE_RIGHT:           shape_move(EXP_FACT);               break;
-        case KEY_MOVE_DOWN:            ++current.x;  break;
-        case KEY_CHANGE_POSITION_NEXT: shape_set_position(N_POS);          break;
-        case KEY_DROP_SHAPE:           shape_drop();                       break;
-        case KEY_PAUSE:                while(getchar() != KEY_PAUSE);      break;
-        case KEY_QUIT:                 running = False;                    break;
-        case 'Q':                      running = False;                    break; //대문자 Q를 사용할 때 종료
-        case 'r':                      if(lifes != 0) revive();             break;
-            //case 't':                      sleep(5);                         break; //5초 정지
-            //시간 멈추는 능력
-    }
-
-    return;
+    /*TODO sj
+     * consider this*/
+    pthread_mutex_lock(&locInfo);
+//     if(c > 0)
+//          --current.x;
+	 /*main함수중에 전체 루프중에 필수적으로 거치는 함수이자 입력받은 값에따라 게임 진행이 된다.
+    여기서 key_pause와 key_quit는 게임을 계속 진행하는 대에 영향을 준다*/
+     switch(c)
+     {
+     case KEY_MOVE_LEFT:            shape_move(-EXP_FACT);              break;
+     case KEY_MOVE_RIGHT:           shape_move(EXP_FACT);               break;
+     /*TODO sj
+      * ++scoreeeeeeeeeee?????*/
+     case KEY_MOVE_DOWN:            ++current.x; break;
+     case KEY_CHANGE_POSITION_NEXT: shape_set_position(N_POS);          break;
+     /*TODO sj
+      * whhhat is the different between KEY_MOVE_DOWN and KEY_DRPO_SHHHAPE*/
+     case KEY_DROP_SHAPE:           shape_drop();                       break;
+     case KEY_PAUSE:                while(getchar() != KEY_PAUSE);      break;
+     case KEY_QUIT:                 running = False;                    break;
+     case 'Q':                      running = False;                    break; //대문자 Q를 사용할 때 종료
+     case 'r':                      if(lifes != 0) revive();             break;
+     //case 't':                      sleep(5);                         break; //5초 정지 
+     //시간 멈추는 능력 
+     }
+    pthread_mutex_unlock(&locInfo);
+     return;
 }
 int prescore = 0;
 int height = 0;
 
+int prelevel = 0;
 void
 arrange_score(int l)
 {
-    int prelevel = level;
+    prelevel = level;
     /* 클리어한 라인에따라 점수부여. 여기서 의문점이 5줄이상일때 에러가 발생하는지
     테트리스는 5줄이상 못깹니다.  */
     switch(l)
@@ -264,14 +277,57 @@ arrange_score(int l)
 
 void arrange_score2(int height)
 {
+    prelevel = level;
+
     score+= height * 0.5;
+
+    if(score >= prescore + 100 +(level - 1) * 50)
+    {
+        prescore = prescore + 100 +(level - 1) * 50;
+        level +=1;
+        if(prelevel < level)
+        {
+            lifes+=1;
+            increase = 1;
+            block_down();
+            sound("nope.wav", 400);
+        }
+        else
+        {
+            increase = 0;
+        }
+    }
+    else{
+        increase = 0;
+    }
     DRAW_SCORE();
     return;
 }
 
 void arrange_score3(int check)
 {
+    prelevel = level;
     score+=((check) * 10);
+
+    if(score >= prescore + 100 +(level - 1) * 50)
+    {
+        prescore = prescore + 100 +(level - 1) * 50;
+        level +=1;
+        if(prelevel < level)
+        {
+            lifes+=1;
+            increase = 1;
+            block_down();
+            sound("nope.wav", 400);
+        }
+        else
+        {
+            increase = 0;
+        }
+    }
+    else{
+        increase = 0;
+    }
     DRAW_SCORE();
     return;
 
@@ -390,7 +446,7 @@ void ScoreUpdate()
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+      //  printf("connect error");
     }
     memset(buff, 0x00, sizeof(buff));
     sprintf(buff, "%c|%d|%d", '6', score, user_idx);
@@ -416,7 +472,7 @@ int rankGet()
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+      //  printf("connect error");
     }
     //rank get
     memset(buff,0x00,sizeof(buff));
@@ -450,7 +506,7 @@ int firstScoreGet()
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+        //printf("connect error");
     }
 
     memset(buff,0x00,sizeof(buff));
@@ -480,7 +536,7 @@ void saveLifes(int user_idx)
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+        //printf("connect error");
     }
 
 
@@ -578,7 +634,7 @@ int getLifes(int user_idx)
     serv_addr.sin_port=htons(3090);
 
     if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-        printf("connect error");
+     //   printf("connect error");
     }
 
     sprintf(buff, "%c|%d", '3', user_idx);
@@ -595,6 +651,107 @@ int getLifes(int user_idx)
     return item;
 }
 
+/*TODO sj
+ * 새롭게 만들어진 스레드를 위한 것*/
+void *runner(void *param){
+    int checkThread = atoi(param);
+    //int checkThread = param;
+    if(checkThread == 0)    // 전달된 param을 써서 구분
+    {
+        //printf("call inputThread\n");
+       // inputThread();
+    }
+    else if(checkThread == 1){
+        //printf("call tetrominoTheeaed\n");
+        //tetrominoShiftsThread();
+    }
+}
+
+//void callShapeUnset(){
+//    pthread_mutex_lock(&callFunc);
+//    shape_unset();
+//    pthread_mutex_unlock(&callFunc);
+//}
+
+
+/*TODO sj todo
+ * 이거 tetris.h에 나중에 추가하기*/
+void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
+    //printf("producer thread got in\n");
+
+    buffer_item item;
+
+    while(running){
+        //printf("in while - inputTttttread\n");
+        //item = getchar();
+        //item = getchar();
+        item = getchar();
+        sem_wait(&empty);
+
+        pthread_mutex_lock(&mutex);
+
+        //printf("mutextLocked\n");
+
+        if(count != BUFFER_SIZE){
+           // printf("check the cout ::::::%d\n", count);
+            buffer[in] = item;
+            //clearBuffer();
+            in = (in+1)%BUFFER_SIZE;
+            count++;
+        }
+
+        pthread_mutex_unlock(&mutex);
+
+       // printf("mutextunLocked\n");
+        sem_post(&full);
+    }
+}
+void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 frame을 그릴 부분
+    //printf("consumer thread got in\n");
+
+    buffer_item output;
+
+    while(running){
+        //printf("in while - tetrominoShifts\n");
+
+        sem_wait(&full);
+
+        pthread_mutex_lock(&mutex);
+
+        if(count!=0){
+            output = buffer[out];
+            out = (out+1)%BUFFER_SIZE;
+            count--;
+            //lock
+            shape_set_unset(0);
+            get_key_event(output);
+            //shape_unset();
+            //shape_set();
+            //shape_unset();
+            if(increase != 1){
+                shape_set_unset(1);
+
+            }
+        }
+
+        pthread_mutex_unlock(&mutex);
+
+        sem_post(&empty);
+
+        //printf("got outppppput\n");
+
+    }
+}
+
+void delay(unsigned int sec){
+    clock_t ticks1 = clock();
+    clock_t ticks2 = ticks1;
+    while((ticks2/CLOCKS_PER_SEC-ticks1/CLOCKS_PER_SEC)<(clock_t)sec)
+        ticks2 = clock();
+}
+
+// shape set, unset FYCTION
+
 void sound(const char * filename, int len){
     initAudio();
     Audio * sound = createAudio(filename, 0, SDL_MIX_MAXVOLUME / 2);
@@ -610,60 +767,100 @@ main(int argc, char **argv)
     /*변수들*/
     level = 1;
     int n =1;
-    current.last_move = False;
-    //lifes = 0;
-    lines = 0;
+     current.last_move = False;
+     lines = 0;
+     char myname[10]; 
+	
+    /*TODO sj
+     * for thread*/
+    //pthread_t tid[3];
+    pthread_t producer;
+    pthread_t consumer;
+    pthread_attr_t attr;
+
+    /*TODO sj
+     * initialize for buffer*/
+    count =0;
+    in =0;
+    out =0;
+
+    sem_init(&empty, 0, BUFFER_SIZE);
+    sem_init(&full, 0, 0);
+    pthread_mutex_init(&mutex, NULL);
+    pthread_mutex_init(&callFunc, NULL);
+    pthread_mutex_init(&locInfo, NULL);
+
+    whichLevel =0;  // initial level for speed
 
     //for signup, loging
     char myId[100];
     char myPwd[100];
     int user_idx = -1;
-
+  
     /* Initialize only SDL Audio on default device */
     if(SDL_Init(SDL_INIT_AUDIO) < 0)
     {
         exit;
     }
+         
+ //    first(myname);
+      //초기음악
+  
+      user_idx = first(myId, myPwd); //
+    lifes = getLifes(user_idx); //
+  
+     sound("test.wav", 2000);
+     init(); //게임 진행중에도 게임 사용법 보여
+     frame_init();
+     frame_nextbox_init();;
+      //여기까지 게임을 초기화하는 부분
+    
+    /*TODO sj
+     * create thread
+     * and call runner*/
+    pthread_attr_init(&attr);
+    pthread_create(&producer, &attr, inputThread, &whichThread[0]);
+    pthread_create(&consumer, &attr, tetrominoShiftsThread, &whichThread[1]);
 
-    //first(myname);
-    user_idx = first(myId, myPwd);
-    lifes = getLifes(user_idx);
+    //ssssssfflush(stdout);
 
-    //초기음악
-    sound("test.wav", 2000);
-    init(); //게임 진행중에도 게임 사용법 보여
-    frame_init();
-    frame_nextbox_init();;
-    //여기까지 게임을 초기화하는 부분
-
-    int num = 0;
-
-    while(running)
-    {
-        get_key_event();
-        shape_set();
+      while(running)
+     {
+         //printf("started loop\n");
 
         if(increase == 1)
         {
                 printxy(0, FRAMEH_NB + 13, FRAMEW + 3, "***블록이 안보입니다***");
 
         }
-       else        //레벨 5가 되면 블록이 안보임                     //----------------------seungmin here score modified need!!
+        else
         {
-            frame_refresh();
+            pthread_mutex_lock(&locInfo);
+
+            shape_set_unset(1);
             frame_preview();
+            pthread_mutex_unlock(&locInfo);
+
         }
 
-     //   sleep(10);
-       // view();
-        shape_go_down();
+         printxy(0, FRAMEH_NB + 13, FRAMEW + 3, "                                     ");
+//         else        //레벨 5가 되면 블록이 안보임                     //----------------------seungmin here score modified need!!
+//         {
+//             frame_refresh();
+//             frame_preview();
+//         }
+         //printf("mainSHAPPPPPEset\n");
+	      /*TODO sj todo*/
+         //delay(1);
+         sleep(1000);
+     	  shape_go_down();
 
 
+     }	//이것이 게임루프의 주축이
 
-    }	//이것이 게임루프의 주축이 되는 부분
-
-    sound("violin.wav",9000);
-    SDL_Quit();
+  sound("violin.wav",9000);
+      SDL_Quit();
+  
     quit(myId, user_idx);
     return 0;
 }
