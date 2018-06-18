@@ -398,9 +398,11 @@ shape_go_down(void)
 	이동이 불가능한 상태라면 이동을 중지하고 새로운 Shape를 생성한다.
      */
 
-     if(score <= 20)
+     //블록 내려오는 속도 조절
+
+     if(score <= 15)
      {
-    // sleep(1);
+   //  sleep(1);
      }
 
      if(!check_possible_pos(current.x + 1, current.y))
@@ -418,7 +420,7 @@ shape_go_down(void)
 	  */
           else
           {
-              printf("shapegodownRUNNING FALSE\n");
+            //  printf("shapegodownRUNNING FALSE\n");
                shape_new();
                frame_refresh();
                sleep(2);
@@ -479,12 +481,7 @@ shape_drop(void)
           //shape_set_unset(0);
           ++current.x;
      }
-<<<<<<< HEAD
-
-sound("slip.wav",300);
-=======
      //score += (FRAMEH - current.x)*2;
      sound("slip.wav",300);
->>>>>>> master
      return;
 }
