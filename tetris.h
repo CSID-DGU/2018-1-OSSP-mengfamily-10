@@ -122,12 +122,9 @@ int height;
 
 /* tetris.c */
 
-<<<<<<< HEAD
-=======
 int height;
 int check;
 //char* first(char * name);
->>>>>>> master
 int first(char * myId, char * myPwd);
 void init(void);
 void arrange_score(int l);
@@ -166,7 +163,6 @@ struct termios back_attr;
 shape_t current;
 int frame[FRAMEH + 1][FRAMEW + 1];
 int frame_nextbox[FRAMEH_NB][FRAMEW_NB];
-int user_idx;
 int score;
 int lines;
 int level;
