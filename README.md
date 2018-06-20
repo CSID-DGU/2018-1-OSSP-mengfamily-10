@@ -17,6 +17,8 @@
  > 서버는 고정 IP 사용 (현재 사용 IP주소 : http://13.209.29.192:3000/)
  > 데이터베이스는 연결. Workbench를 통해 확인할 수 있음
  > Ubuntu Terminal에서 실행시켜야한다.
+ > gcc -pthread -o test audio.c audio.h frame.c shapes.c buffer.h tetris.c tetris.h config.h util.c -lSDL2
+ > ./test 명령어로 실행한다
  
  ## 문의
  * 김다은(서버 - 회원가입, 로그인, 기타 정보 불러오기 및 저장)
