@@ -225,4 +225,3 @@ frame_nextbox_refresh(void)       //다음나올 상자와 모양
 
 
 
-
