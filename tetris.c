@@ -202,23 +202,16 @@ void init(void)
 void
 get_key_event(int c)
 {
-    /*TODO sj
-     * consider this*/
     pthread_mutex_lock(&locInfo);
-//     if(c > 0)
-//          --current.x;
 	 /*main함수중에 전체 루프중에 필수적으로 거치는 함수이자 입력받은 값에따라 게임 진행이 된다.
     여기서 key_pause와 key_quit는 게임을 계속 진행하는 대에 영향을 준다*/
      switch(c)
      {
      case KEY_MOVE_LEFT:            shape_move(-EXP_FACT);              break;
      case KEY_MOVE_RIGHT:           shape_move(EXP_FACT);               break;
-     /*TODO sj
-      * ++scoreeeeeeeeeee?????*/
+
      case KEY_MOVE_DOWN:            ++current.x; break;
      case KEY_CHANGE_POSITION_NEXT: shape_set_position(N_POS);          break;
-     /*TODO sj
-      * whhhat is the different between KEY_MOVE_DOWN and KEY_DRPO_SHHHAPE*/
      case KEY_DROP_SHAPE:           shape_drop();                       break;
      case KEY_PAUSE:                while(getchar() != KEY_PAUSE);      break;
      case KEY_QUIT:                 running = False;                    break;
@@ -651,68 +644,34 @@ int getLifes(int user_idx)
     return item;
 }
 
-/*TODO sj
- * 새롭게 만들어진 스레드를 위한 것*/
-void *runner(void *param){
-    int checkThread = atoi(param);
-    //int checkThread = param;
-    if(checkThread == 0)    // 전달된 param을 써서 구분
-    {
-        //printf("call inputThread\n");
-       // inputThread();
-    }
-    else if(checkThread == 1){
-        //printf("call tetrominoTheeaed\n");
-        //tetrominoShiftsThread();
-    }
-}
-
-//void callShapeUnset(){
-//    pthread_mutex_lock(&callFunc);
-//    shape_unset();
-//    pthread_mutex_unlock(&callFunc);
-//}
-
-
-/*TODO sj todo
- * 이거 tetris.h에 나중에 추가하기*/
 void *inputThread(void *param){  // 사용자의 입력을 받아들일 부분
     //printf("producer thread got in\n");
 
     buffer_item item;
 
     while(running){
-        //printf("in while - inputTttttread\n");
-        //item = getchar();
-        //item = getchar();
         item = getchar();
         sem_wait(&empty);
 
         pthread_mutex_lock(&mutex);
 
-        //printf("mutextLocked\n");
 
         if(count != BUFFER_SIZE){
-           // printf("check the cout ::::::%d\n", count);
             buffer[in] = item;
-            //clearBuffer();
             in = (in+1)%BUFFER_SIZE;
             count++;
         }
 
         pthread_mutex_unlock(&mutex);
 
-       // printf("mutextunLocked\n");
         sem_post(&full);
     }
 }
 void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 frame을 그릴 부분
-    //printf("consumer thread got in\n");
 
     buffer_item output;
 
     while(running){
-        //printf("in while - tetrominoShifts\n");
 
         sem_wait(&full);
 
@@ -725,9 +684,6 @@ void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 fr
             //lock
             shape_set_unset(0);
             get_key_event(output);
-            //shape_unset();
-            //shape_set();
-            //shape_unset();
             if(increase != 1){
                 shape_set_unset(1);
 
@@ -737,9 +693,6 @@ void *tetrominoShiftsThread(void *param){ // 사용자의 입력을 반영해 fr
         pthread_mutex_unlock(&mutex);
 
         sem_post(&empty);
-
-        //printf("got outppppput\n");
-
     }
 }
 
@@ -773,7 +726,6 @@ main(int argc, char **argv)
 	
     /*TODO sj
      * for thread*/
-    //pthread_t tid[3];
     pthread_t producer;
     pthread_t consumer;
     pthread_attr_t attr;
@@ -817,16 +769,13 @@ main(int argc, char **argv)
     
     /*TODO sj
      * create thread
-     * and call runner*/
+     * */
     pthread_attr_init(&attr);
     pthread_create(&producer, &attr, inputThread, &whichThread[0]);
     pthread_create(&consumer, &attr, tetrominoShiftsThread, &whichThread[1]);
 
-    //ssssssfflush(stdout);
-
       while(running)
      {
-         //printf("started loop\n");
 
         if(increase == 1)
         {
@@ -849,9 +798,7 @@ main(int argc, char **argv)
 //             frame_refresh();
 //             frame_preview();
 //         }
-         //printf("mainSHAPPPPPEset\n");
-	      /*TODO sj todo*/
-         //delay(1);
+
          sleep(1000);
      	  shape_go_down();
 
